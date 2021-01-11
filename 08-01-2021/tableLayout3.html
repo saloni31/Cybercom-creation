@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title> Table Layout </title>
+	<link rel="stylesheet" type="text/css" href="css/style2.css">
+</head>
+<body>
+	<div class="main">
+		<table class="table" border="1">
+			<thead>
+				<tr class="row">
+					<th><b> Heading 1 </b></th>
+					<th><b> Heading 2 </b></th>
+					<th><b> Heading 3 </b></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class="row">
+					<td> cell 1 text </td>
+					<td rowspan="2"> cell 2 text A <br> cell 2 text B</td>
+					<td> cell 3 text </td>
+				</tr>
+
+				<tr></tr>
+
+				<tr>
+					<td class="cell2"> a long piece of cell text on one line without break </td>
+					<td class="cell1"><i> cell text </i></td>
+					<td class="text-right cell3"> cell text aligned right </td>
+				</tr>
+
+				<tr>
+					<td class="cell2"><b> Cell text </b></td>
+					<td></td>
+					<td class="cell4"> Graphic background </td>
+				</tr>
+
+				<tr class="row">
+					<td colspan="3"><b> Mid Table Heading </b></td> 
+				</tr>
+
+				<tr>
+					<td> Things to do today </td>
+					<td rowspan="5" class="cell2"><b> W <br>E <br> E <br> K <br><br> 26 </b></td> 
+					<td> Monday </td>
+				</tr>
+
+				<tr class="cell7">
+					<td> Things to do on tuesday </td>
+					<td> Tuesday </td>
+				</tr>
+
+				<tr>
+					<td> Things to do today </td>
+					<td> Wednesday </td>
+				</tr>
+
+				<tr>
+					<td class="cell5"> Things to do today </td>
+					<td class="cell6"><b> Thursday </b></td>
+				</tr>
+
+				<tr>
+					<td> Stuff to tidy up <b> before the weekened!!! </b> </td>
+					<td> Friday </td>
+				</tr>
+			</tbody>
+
+
+		</table>
+	</div>
+</body>
+</html>

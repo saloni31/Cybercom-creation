@@ -1,0 +1,41 @@
+.main{
+	margin-left: 200px;
+	margin-right: 200px;
+	margin-top: 200px;
+	margin-bottom: 200px;
+}
+
+table{
+	width: 100%;
+}
+
+.row,.cell2{
+	text-align: center;
+}
+
+.cell1{
+	text-align: left;
+}
+
+.cell3{
+	text-align: right;
+}
+
+.cell4{
+	background-image: url(../images/image.jpg);
+}
+
+.cell5{
+	text-align: center;
+	background-color: green;
+}
+
+.cell6{
+	text-align: left;
+	background-color: green;
+}
+
+.cell7{
+	text-align: left;
+	background-color: red;
+}
