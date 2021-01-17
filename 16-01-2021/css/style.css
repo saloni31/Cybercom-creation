@@ -1,0 +1,17 @@
+.round{
+	border-radius: 20px;
+	margin-left: 150px;
+	background-color: #9933ff;
+	box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.header-img{
+	background-image: url("../images/download1.jpeg");
+}
+
+input.empty {
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: inherit;
+}
