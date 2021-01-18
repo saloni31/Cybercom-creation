@@ -1,0 +1,19 @@
+ table tr td.column1{ 
+	padding-left: 70px;
+}
+ table tr td.column{ 
+	padding-left: 170px;
+}
+.main{
+	margin-top: 50px;
+	margin-left: 50px;
+	margin-right: 50px; 
+}
+
+#ageGroup{
+	width: 170px;
+}
+
+#hobbies,#transport,#car{
+	width: 150px;
+}

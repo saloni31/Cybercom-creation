@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title> Index </title>
+	<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"> -->
+	<link rel="stylesheet" href="./css/style.css">
+	<!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script> -->
+	<!--  <style>
+	 	.column{
+	 		padding-left: 80px
+	 	}
+	 </style> -->
+</head>
+<body>
+	<div class="main">
+		<form method="post" action="success.html">
+			<fieldset>
+				<legend> Your Address</legend>
+				<table>
+					<tbody >
+					<tr>
+						<td >
+							<label for="firstName"> First Name</label>
+						</td>
+						
+						<td class="column">
+							<input type="text" name="firstName" id="firstName">
+						</td>
+					</tr>
+
+					<tr>
+						<td>
+							<label for="lastName"> Last Name</label>
+						</td>
+						
+						<td class="column">
+							<input type="text" name="lastName" id="lastName">
+						</td>
+					</tr>
+
+					<tr>
+						<td >
+							<label for="street"> Street </label>
+						</td>
+						
+						<td class="column">
+							<input type="text" name="street" id="street">
+						</td>
+					</tr>
+
+					<tr>
+						<td>
+							<label for="city"> City </label>
+						</td>
+						
+						<td class="column">
+							<input type="text" name="city" id="city">
+						</td>
+					</tr>
+					
+				</tbody>
+				</table>
+			</fieldset>
+			<br>
+
+			<fieldset>
+				<legend>Additional Details</legend>
+				<table>
+					<tr>
+						<td>
+							<label for="biography"> Biography</label>
+						</td>
+						<td class="column">
+							<textarea id="biography" name="biography"></textarea>
+						</td>
+					</tr>
+
+					<tr>
+						<td>
+							<label for="image">Image</label>
+						</td>
+						<td class="column">
+							<input type="file" name="image" id="image">
+						</td>
+					</tr>
+
+					<tr>
+						<td>
+							<label for="ageGroup"> Age Group</label>
+						</td>
+						<td class="column">
+							<input type="number" name="ageGroup" id="ageGroup" min="0" max="9" placeholder="0 to 9 years">
+						</td>
+					</tr>
+
+				</table>
+			</fieldset>
+			<br>
+
+			<fieldset>
+				<legend> Interests</legend>
+				<table>
+					<tr>
+						<td> 
+							<label for="hobbies"> Hobbies </label>
+						</td>
+						<td class="column1">
+							<select id="hobbies" name="hobbies" size="4">
+								<option> Playing Soccer </option>
+								<option> Dancing </option>
+								<option> Gardening </option>
+								<option> Watching movies </option>
+							</select>
+						</td>
+					</tr>
+
+					<tr>
+						<td>
+							<label id="car"> Favourite car?</label>
+						</td>
+						<td class="column1">
+							<select id="car" name="car">
+								<option> volvo </option>
+								<option> toyoya fortuner </option>
+								<option> maruti swift </option>
+								<option> Hyundai i20 </option>
+								<option> tata naxon</option>
+							</select>
+						</td>
+					</tr>
+
+					<tr>
+						<td>
+							<label for="transport"> Favourite Public transport? </label>
+						</td>
+						<td class="column1">
+							<select id="transport" name="transport" size="4">
+								<option> Train </option>
+								<option> Bus </option>
+								<option> Car </option>
+								<option> Plane </option>
+								<option> Ship </option>
+								<option> Boat </option>
+							</select>
+						</td>
+					</tr>
+				</table>
+			</fieldset>
+			<br>
+			<tr>
+				<td></td>
+				<td> <input type="submit" name="submit" id="submit"></td>
+				<td> <input type="reset" name="reset" id="reset"></td>
+			</tr>
+		</form>
+	</div>
+</body>
+</html>
