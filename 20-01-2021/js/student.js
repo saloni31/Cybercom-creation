@@ -1,16 +1,19 @@
+// Declaration of Student array
 var studentArray;
 studentArray = [];
 
-
+// check whether studentData is there in localstorage
 if(localStorage.getItem("StudentData"))
 {
 	studentArray = JSON.parse(localStorage.getItem("StudentData"));
 }
 
+// function to get data based on id
 function getData(id){
 	return document.getElementById(id).value;
 }
 
+// function will generate the object
 function generateObject(){
 	let studentObj = {};
 	studentObj.Id = getData("id");
@@ -26,26 +29,25 @@ function generateObject(){
 	return studentObj;
 }
 
+// function calculates student percentage
 function calcPercentage(marksArray){
 	return Math.round((marksArray.reduce((a,b) => a+b)*100)/180);
-	// return Math.round(((studentObj.Java + studentObj.Python + studentObj.Php + studentObj.JS + studentObj.ASP)*100)/180);
 }
 
+// function calculates the grade based on the percentage
 function calcGrade(percentage){
-	if(percentage >= 75)
-		return "First Class with Distinction";
-	else if(percentage < 75 && percentage >= 60)
-		return "First Class";
-	else if(percentage < 60 && percentage >= 45)
-		return "Second Class";
-	else
-		return "Pass Class";
+	return (percentage >= 75) ? "First Class with Distinction" : (percentage < 75 && percentage >= 60) ? "First Class" : (percentage < 60 && percentage >= 45) ? "Second Class" : "Pass Class";
 }
 
-document.getElementById("studentForm").addEventListener("submit",(event) => {
+// on form submit event object will be stored into the single array and then in local storage
+document.getElementById("studentForm").addEventListener("submit",() => {
 	
-	// event.preventDefault();
-	studentArray.push(generateObject());
+	if(studentArray === []){
+		studentArray=[generateObject()];
+	}
+	else{
+		studentArray.push(generateObject());
+	}
 	localStorage.setItem("StudentData",JSON.stringify(studentArray));
 
 });

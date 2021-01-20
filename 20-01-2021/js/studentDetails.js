@@ -1,6 +1,8 @@
+// Get data from the local storage and store into the array
 var studentArray = JSON.parse(localStorage.getItem("StudentData"));
 var str = "";
 
+// display all the data into the table
 for (x in studentArray){
 	str += "<tr><td>" + studentArray[x]['Id'] + "</td>";
 	str += "<td>" + studentArray[x]['Name'] + "</td>";
