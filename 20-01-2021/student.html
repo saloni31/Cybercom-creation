@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title> Student Details </title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<div class="container mt-5 pl-5">
+		<div class="card border-0 bg-light w-50">
+			<div class="card-body font-weight-bold shadow text-center">
+				<div class="">
+					<h1> Student Information </h1>
+				</div>
+				<hr>
+				<form class="form" id="studentForm" method="post" action="studentDetails.html">
+					<div class="row mt-3">
+						<div class="col-sm-6">
+							<div class="form-group">
+								<span><label for="id"> Student Id </label></span>
+								<span class="ml-3"><input type="text" class="form-control" name="id" id="id" required pattern="[0-9A-Za-z]{10}" title="Only 10 charaters and digits combination is allow"></span>
+							</div>
+						</div>
+
+						<div class="col-sm-6">
+							<div class="form-group">
+								<span><label for="name"> Student Name </label></span>
+								<span class="ml-3"><input type="text" class="form-control" name="name" id="name" pattern="[A-Za-z ]+" title="Only characters and space are allow"></span>
+							</div>
+						</div>
+					</div>
+
+					<div class="row mt-3">
+						<div class="col-sm-6">
+							<div class="form-group">
+								<span><label for="rollNo"> Roll Number </label></span>
+								<span class="ml-3"><input type="text" class="form-control" name="rollNo" id="rollNo" pattern="[0-9A-Z]{5}" title="Only 5 capital letters and digits combination is allow"></span>
+							</div>
+						</div>
+
+						<div class="col-sm-6">
+							<div class="form-group">
+								<span><label for="java"> Java Marks </label></span>
+								<span class="ml-3"><input type="number" class="form-control" name="java" id="java" min="0" max="36" ></span>
+							</div>
+						</div>
+					</div>
+
+					<div class="row mt-3">
+						<div class="col-sm-6">
+							<div class="form-group">
+								<span><label for="python"> Python Marks </label></span>
+								<span class="ml-3"><input type="number" class="form-control" name="python" id="python" min="0" max="36"></span>
+							</div>
+						</div>
+
+						<div class="col-sm-6">
+							<div class="form-group">
+								<span><label for="php"> PHP Marks </label></span>
+								<span class="ml-3"><input type="number" class="form-control" name="php" id="php" min="0" max="36" ></span>
+							</div>
+						</div>
+					</div>
+
+					<div class="row mt-3">
+						<div class="col-sm-6">
+							<div class="form-group">
+								<span><label for="js"> JS Marks </label></span>
+								<span class="ml-3"><input type="number" class="form-control" name="js" id="js" min="0" max="36"></span>
+							</div>
+						</div>
+
+						<div class="col-sm-6">
+							<div class="form-group">
+								<span><label for="asp"> AST .Net Marks </label></span>
+								<span class="ml-3"><input type="number" class="form-control" name="asp" id="asp" min="0" max="36" ></span>
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-sm-12">
+							<input type="submit" name="submit" id="submit" value="Submit" class="form-control btn btn-dark btn-rounded btn-hover font-weight-bold">
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+<script type="text/javascript" src="js/student.js"></script>
+</html>
