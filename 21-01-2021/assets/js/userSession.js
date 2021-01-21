@@ -3,7 +3,7 @@ function getUserSessionData(){
 	 return JSON.parse(localStorage.getItem("userSession"));	
 }
 
-function showUserData(){
+function showUserSessionData(){
 	let usersArray = getUserSessionData();
 	console.log(usersArray);
 	let userString = "";
@@ -13,9 +13,9 @@ function showUserData(){
 	}
 	else{
 		for (x in usersArray){
-			if(userArray[x]['role'] === "user"){
+			if(usersArray[x]['role'] === "user"){
 				userString += "<tr><td>" + usersArray[x]['name'] + "</td>";
-				userString += "<td>" + usersArray[x]['login'] + "</td>";
+				userString += "<td>" + Date(usersArray[x]['login']) + "</td>";
 				userString += "<td>" + usersArray[x]['logout'] || '' + "</td>";
 			}
 		}
@@ -23,3 +23,5 @@ function showUserData(){
 
 	getElement("users").innerHTML = userString;
 }
+
+showUserSessionData();

@@ -4,9 +4,10 @@ function getElement(id) {
 }
 
 // get admin name from the session storage and display in sidebar
-if(sessionStorage.getItem("AdminSession")){
-	let name=sessionStorage.getItem("AdminSession");
+if(sessionStorage.getItem("user")){
+	let name=sessionStorage.getItem("user");
 	let index = name.indexOf(" ");
 	name = name.substr(0,index);
 	getElement("greet").innerHTML = "Hello, "+ name;
 }
+

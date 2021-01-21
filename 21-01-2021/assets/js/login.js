@@ -31,12 +31,12 @@ function login(){
 		let sessionObj = {
 			name : response['name'],
 			login : new Date(),
+			logout : " ",
 			role : response['role']
 		};
 		(sessionArray === []) ? sessionArray = [sessionObj] : sessionArray.push(sessionObj);
-
-		sessionStorage.setItem("user",response['name']);
 		localStorage.setItem("userSession",JSON.stringify(sessionArray));
+		sessionStorage.setItem("user",response['name']);
 		alert ("Login successfully");
 		(response.role === "admin") ? window.location.href = "Dashboard.html" : window.location.href = "Sub-user.html";
 		
