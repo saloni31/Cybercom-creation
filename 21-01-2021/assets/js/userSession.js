@@ -3,6 +3,11 @@ function getUserSessionData(){
 	 return JSON.parse(localStorage.getItem("userSession"));	
 }
 
+function dateFormat(date){
+	let formattedDate = new Date(date);
+	return formattedDate.getDay() + "-" + formattedDate.getMonth() + "-" + formattedDate.getFullYear() + " " + formattedDate.getHours() + ":" + formattedDate.getMinutes();
+}
+
 function showUserSessionData(){
 	let usersArray = getUserSessionData();
 	console.log(usersArray);
@@ -15,8 +20,8 @@ function showUserSessionData(){
 		for (x in usersArray){
 			if(usersArray[x]['role'] === "user"){
 				userString += "<tr><td>" + usersArray[x]['name'] + "</td>";
-				userString += "<td>" + Date(usersArray[x]['login']) + "</td>";
-				userString += "<td>" + usersArray[x]['logout'] || '' + "</td>";
+				userString += "<td>" + dateFormat(usersArray[x]['login']) + "</td>";
+				userString += "<td>" + dateFormat(usersArray[x]['logout']) + "</td>";
 			}
 		}
 	}
