@@ -8,24 +8,40 @@ function getElement(id) {
 // if credentials are correct then redirect to the dashboard.
 
 function login(){
-	let adminArray = [];
+	let userArray = [];
 	let email = getElement("email").value;
 	let password = getElement("password").value;
 
-	if(localStorage.getItem("AdminData")){
-		adminArray = JSON.parse(localStorage.getItem("AdminData"));
+	if(localStorage.getItem("user")){
+		userArray = JSON.parse(localStorage.getItem("user"));
 	}
 
-	if(email === adminArray[0]['email'] && password === adminArray[0]['password']) {
-		sessionStorage.setItem("AdminSession",[adminArray[0]['name']]);
-		alert ("Login successfully");
-		window.location.href = "Dashboard.html";
-	}
-	else
-	{
+	let response=userArray.find((el)=>{
+		return (el.email === email && el.password === password);
+	})
+
+	if(!response){
 		alert("Credential Do Not Match");
+	}else{
+		let sessionArray = [];
+		if(localStorage.getItem("userSession")){
+			sessionArray = JSON.parse(localStorage.getItem("userSession"));
+		}
+
+		let sessionObj = {
+			name : response['name'],
+			login : new Date(),
+			role : response['role']
+		};
+		(sessionArray === []) ? sessionArray = [sessionObj] : sessionArray.push(sessionObj);
+
+		sessionStorage.setItem("user",response['name']);
+		localStorage.setItem("userSession",JSON.stringify(sessionArray));
+		alert ("Login successfully");
+		(response.role === "admin") ? window.location.href = "Dashboard.html" : window.location.href = "Sub-user.html";
+		
 	}
-	console.log(adminArray);
+
 }
 
 // clicking on login button call login function so we can verify the credentials
