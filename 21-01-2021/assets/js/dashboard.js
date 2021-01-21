@@ -10,4 +10,7 @@ if(sessionStorage.getItem("user")){
 	name = name.substr(0,index);
 	getElement("greet").innerHTML = "Hello, "+ name;
 }
+else{
+	window.location.href = "Login.html";
+}
 
