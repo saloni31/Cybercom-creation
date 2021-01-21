@@ -3,7 +3,7 @@ function getElement(id) {
 	return document.getElementById(id);
 }
 
-// get admin name from the session storage and display in sidebar
+// get admin name from the session storage and display in sidebar else redirect to login
 if(sessionStorage.getItem("user")){
 	let name=sessionStorage.getItem("user");
 	let index = name.indexOf(" ");
