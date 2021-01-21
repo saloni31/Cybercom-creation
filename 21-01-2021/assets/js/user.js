@@ -55,10 +55,13 @@ showUserData();
 
 // function deletes the user data from the local storage
 function deleteUserData(id){
-	let arr = getUserData();
-	arr.splice(id,1);
-	localStorage.setItem("user",JSON.stringify(arr));
-	window.location.reload(true);
+	if(confirm("Are you sure want to delete?")){
+		let arr = getUserData();
+		arr.splice(id,1);
+		localStorage.setItem("user",JSON.stringify(arr));
+		window.location.reload(true);
+	}
+	
 }
 
 let currentIndex = "";
