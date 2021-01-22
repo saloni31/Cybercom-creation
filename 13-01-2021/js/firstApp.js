@@ -8,8 +8,8 @@ document.getElementById("game").addEventListener('click',function(){
 	document.getElementById('dice').src="images/dice-1.png";
 	$('#active-1').removeClass('d-none');
 	$('#active-2').addClass('d-none');
-	$("#winner-1").removeClass("d-none");
-	$("#winner-2").removeClass("d-none");
+	// $("#winner-1").removeClass("d-none");
+	// $("#winner-2").removeClass("d-none");
 });
 
 document.getElementById("roll-dice").addEventListener('click',rollDown);
