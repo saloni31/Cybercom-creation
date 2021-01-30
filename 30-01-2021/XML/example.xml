@@ -1,0 +1,36 @@
+<producers>
+	<producer>
+		<name>Alex</name>
+		<age>22</age>
+		<show>
+			<showname>A show</showname>
+			<showdate>12th january 2011</showdate>
+		</show>
+		<show>
+			<showname>Another show</showname>
+			<showdate>4th july 2009</showdate>
+		</show>
+	</producer>
+
+	<producer>
+		<name>Billy</name>
+		<age>30</age>
+		<show>
+			<showname>good show</showname>
+			<showdate>17th july 2012</showdate>
+		</show>
+	</producer>
+
+	<producer>
+		<name>Dale</name>
+		<age>49</age>
+		<show>
+			<showname>better show</showname>
+			<showdate>15th december 2007</showdate>
+		</show>
+		<show>
+			<showname>nice show</showname>
+			<showdate>4th august 2009</showdate>
+		</show>
+	</producer>
+</producers>
