@@ -9,7 +9,24 @@ if(isset($_POST['submit'])){
 		$comment = $_POST['comment'];
 		if(!empty($name) && !empty($email) && !empty($comment)){
 
-			
+			$mail = new PHPMailer;
+			$mail->isSMTP();
+			$mail->Host = "smtp.gmail.com";
+			$mail->SMTPAuth = true;
+			$mail->Username = "donationhub2@gmail.com";
+			$mail->Password = "donate123";
+			$mail->SMTPSecure = 'tls';
+			$mail->Port = 587;
+			$mail->addAddress($to);
+			$mail->isHTML(true);
+			$mail->Body = $name ."\n". $comment;
+			$mail->Subject = "Contact form";
+			$mail->setFrom("donationhub2@gmail.com", "Donation Hub");
+			if (!$mail->send()) {
+			    echo "error: " . $mail->ErrorInfo;
+			} else {
+			    echo "Email sent";
+			}
 		}else{
 		echo "Please fill all the fields.";
 		}

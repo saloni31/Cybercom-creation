@@ -1,0 +1,72 @@
+.container{
+	background-color: #D0F5C7;
+	width: 75%;
+	margin: 100px;
+}
+
+.text-align{
+	text-align: center;
+	border-collapse: collapse;
+	font-size: 34px;
+
+}
+
+fieldset{
+	background-color: #9CFA83;
+}
+
+form{
+	padding : 15px;
+	font-family: verdana;
+}
+
+li{
+	margin-top: 20px;
+	font-size: 20px;
+}
+
+.set-field{
+	margin-left: 100px;
+}
+
+.set-field1{
+	margin-left: 120px;
+}
+
+.set-field2{
+	margin-left: 40px;
+}
+
+.set-field3{
+	margin-left: 60px;
+}
+
+.set-dob{
+	margin-left: 150px;
+}
+
+select{
+	font-size: 20px;
+	width: 10%;
+}
+
+.set-agreement{
+	margin-top: 20px;
+	font-size: 20px;
+	margin-left: 250px;
+}
+
+.set-buttons{
+	margin-left: 250px;
+	font-size: 20px;
+}
+
+.button{
+	width : 25%;
+	height: 75%;
+	font-size: 20px;
+}
+
+.error{
+	color : red;
+}

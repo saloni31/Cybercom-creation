@@ -1,0 +1,15 @@
+td{
+	padding: 15px;
+}
+
+tbody{
+	background-color: #40E0D0;
+}
+
+.field-color{
+	background-color: #D6EAF8;
+}
+
+thead{
+	background-color: #FAE37D;
+}
