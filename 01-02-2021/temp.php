@@ -1,10 +1,14 @@
-<?php 
+<?php
+
 $server = "localhost";
 $user = "root";
 $password = "";
 $database = "practice";
 
 $con = @mysqli_connect($server,$user,$password,$database) or die("Could not connect");
+$table = "contact_us";
+$keys = array("name","email","subject","message");
+$values = array("saloni sindhi","saloni@gmail.com","sbdkesjuvk","ajvjsevjhwe");
 
 function insert($table, $keys, $values)
 {
@@ -24,7 +28,9 @@ function insert($table, $keys, $values)
 
 function selectByValue($table,$key,$value){
 	$sql = "select * from ".$table." where ".$key."='".$value."'";
+	echo $sql;
 	$res = mysqli_query($GLOBALS['con'],$sql);
+	// $row = mysqli_fetch_assoc($res);
 	$data = [];
 	$i = 0;
 	while($row = mysqli_fetch_assoc($res)){
@@ -33,4 +39,5 @@ function selectByValue($table,$key,$value){
 	}
 	return $data;
 }
-?>
+
+print_r(selectByValue("contact_us","id",1));

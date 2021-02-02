@@ -29,6 +29,10 @@ const validate_form = () =>{
 		getElement("emailError").innerHTML = 
 		"Please enter your email.";
 		isValidate = false;
+	}else if(email.length > 50){
+		getElement("emailError").innerHTML = 
+		"Email should be 50 characters long.";
+		isValidate = false;
 	}else{
 		getElement("emailError").innerHTML="";
 	}
@@ -37,6 +41,10 @@ const validate_form = () =>{
 		getElement("subjectError").innerHTML = 
 		"Please enter your subject.";
 		isValidate = false;
+	}else if(subject.length > 30){
+		getElement("subjectError").innerHTML = 
+		"Subject should be 30 characters long.";
+		isValidate = false;
 	}else{
 		getElement("subjectError").innerHTML="";
 	}
@@ -44,6 +52,10 @@ const validate_form = () =>{
 	if(message === "")	{
 		getElement("messageError").innerHTML = 
 		"Please enter some message.";
+		isValidate = false;
+	}else if(message.length > 100){
+		getElement("messageError").innerHTML = 
+		"message should be 100 haracters long.";
 		isValidate = false;
 	}else{
 		getElement("messageError").innerHTML="";

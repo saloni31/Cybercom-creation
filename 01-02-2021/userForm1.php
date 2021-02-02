@@ -1,4 +1,5 @@
 <?php
+require 'connection.php';
 if(isset($_POST['submit'])){
 	$nameErr = $passwordErr = $addressErr = $genderErr = "";
 	$birthdateErr = $gameErr = $statusErr = "";
@@ -53,6 +54,16 @@ if(isset($_POST['submit'])){
 		$statusErr = "Please select your marital status.";
 	}else{
 		$status = $_POST['status'];
+	}
+
+	if(!empty($name) && !empty($password) && !empty($address) && !empty($game) 
+		&& !empty($gender) && !empty($birthdate) && !empty($status)){
+		$game = implode(",", $game);
+		$keys = ['name','password','address','games','gender','birthdate','status'];
+		$values=[$name,$password,$address,$game,$gender,$birthdate,$status];
+		if(insert("user_form2",$keys,$values)){
+			echo "You are registered successfully.";
+		}
 	}		
 }
 ?>
@@ -65,6 +76,7 @@ if(isset($_POST['submit'])){
 	<script type="text/javascript" src="js/userForm1.js"></script>
 </head>
 <body>
+	
 	<div class="container">
 		<form method="post" action="userForm1.php" onsubmit="return validate_form()">
 			<fieldset>
@@ -195,21 +207,15 @@ if(isset($_POST['submit'])){
 		</form>
 	</div>
 	<?php
-	if(!empty($name) && !empty($password) && !empty($address) && !empty($game) && !empty($gender)
-	&& !empty($birthdate) && !empty($status)){
+	if(!empty($name) && !empty($password) && !empty($address) && !empty($game) 
+		&& !empty($gender) && !empty($birthdate) && !empty($status)){
 	?>
 		<div class="container">
 				<?php
 					echo "Name: ".$name."<br>";
 					echo "Password: ".$password."<br>";
 					echo "Address: ".$address."<br>";
-					echo "Game: ";
-					for ($i=0; $i<count($game); $i++) {
-						echo $game[$i];
-						if($i !== count($game)-1){
-							echo ", ";
-						}
-					}
+					echo "Game: ".$game;
 					echo "<br>Gender: ".$gender."<br>";
 					echo "BirthDate: ".$birthdate."<br>";
 					echo "Marital status: ".$status;

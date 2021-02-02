@@ -1,9 +1,10 @@
 <?php
+require 'connection.php';
 if(isset($_POST['submit'])){
 	$firstNameErr = $lastNameErr = $birthdateErr = "";
 	$genderErr = $countryErr = $emailErr = "";
 	$phoneErr = $passwordErr = $confirmPasswordErr ="";
-	$firstName = $lastName = $birthdate ="";
+	$firstName = $lastName = $birthdate = $success = "";
 	$gender = $country = $email = $phone = $password = "";
 
 	if(empty($_POST['firstName'])){
@@ -75,6 +76,17 @@ if(isset($_POST['submit'])){
 	}elseif($_POST['confirmPassword'] !== $_POST['password']){
 		$confirmPasswordErr = "Confirm password should match with password.";
 	}
+
+	if(!empty($firstName) && !empty($lastName) && !empty($birthdate) && !empty($gender)
+	 && !empty($country) && !empty($email) && !empty($phone) && !empty($password)){
+	 	$keys = ['firstName','lastName','birthDate','gender',
+				'country','email','phone','password'];
+		$values = [$firstName,$lastName,$birthdate,$gender,
+					$country,$email,$phone,$password];
+		if(insert("signup",$keys,$values)){
+			$success = "You are registered successfully.";
+		}
+	}
 }
 ?>
 
@@ -90,6 +102,11 @@ if(isset($_POST['submit'])){
 </head>
 <body>
 	<div class="container mt-5">
+		<div class="bg-success w-50 mb-2">
+			<h5 class="text-center">
+				<?php if(isset($success)) echo $success ?>
+			</h5>
+		</div>
 		<div class="card w-50 ">
 			<div class="card-header bg-warning">
 				<span class="title font-weight-bold"> Sign up </span>

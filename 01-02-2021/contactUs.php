@@ -1,7 +1,8 @@
 <?php
+require "connection.php";
 if(isset($_POST['submit'])){
 	$nameErr = $emailErr = $subjectErr = $messageErr = "";
-	$name = $email = $subject = $message = "";
+	$name = $email = $subject = $message = $success = "";
 
 	if(empty($_POST['name'])){
 		$nameErr = "Please enter your name.";	
@@ -30,6 +31,13 @@ if(isset($_POST['submit'])){
 	}else{
 		$message = $_POST['message'];
 	}
+
+	if(!empty($name) && !empty($email) && !empty($subject) && !empty($message)){
+		if(insert("contact_us",['name','email','subject','message'],
+		[$name,$email,$subject,$message])){
+			$success = "We will contact you soon.";
+		}
+	}
 }
 ?>
 
@@ -41,10 +49,15 @@ if(isset($_POST['submit'])){
 	<link rel="stylesheet" type="text/css" href="css/contactUs.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-	<!-- <script type="text/javascript" src="js/contactUs.js"></script> -->
+	<script type="text/javascript" src="js/contactUs.js"></script>
 </head>
 <body>
 	<div class="container mt-5">
+		<div class="bg-success w-50 mb-2">
+			<h5 class="text-center">
+				<?php if(isset($success)) echo $success ?>
+			</h5>
+		</div>
 		<div class="card text-center border-0 w-50">
 			<div class="card-header header">
 				<h2 class="text-white"> CONTACT US! </h2>

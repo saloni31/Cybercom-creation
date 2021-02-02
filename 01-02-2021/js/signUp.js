@@ -60,6 +60,10 @@ function validate_form() {
 		getElement("emailError").innerHTML = 
 		"Please enter your email.";
 		isValidate = false;
+	}else if(email.length > 30){
+		getElement("emailError").innerHTML = 
+		"Email should not be more than 30 characters.";
+		isValidate = false;
 	}else{
 		getElement("emailError").innerHTML="";
 	}

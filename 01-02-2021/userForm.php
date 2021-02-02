@@ -1,9 +1,10 @@
 <?php
+require 'connection.php';
 	if(isset($_POST['submit'])){
 		$nameErr = $passwordErrr = $gameErr = "";
 		$genderErr = $ageErr = $fileErr = $addressErr = "";
 		$name = $password = $address = $game ="";
-		$gender = $age = $filename = "";
+		$gender = $age = $filename = $success= "";
 
 		if(empty($_POST['name'])){
 			$nameErr = "Please enter your name.";	
@@ -52,6 +53,15 @@
 		}else{
 			$filename = $_FILES['file']['name'];
 		}
+
+		if(!empty($name) && !empty($password) && !empty($address) && !empty($game) && !empty($gender) && !empty($age) && !empty($filename)){
+			$game = implode(",",$game);
+	 		$keys = ['name','password','address','game','gender','age','file'];
+	 		$values = [$name,$password,$address,$game,$gender,$age,$filename];
+	 		if(insert("user_form1",$keys,$values)){
+	 			$success = "You are registered successfully.";
+	 		}
+		}
 	}
 ?>
 
@@ -67,6 +77,11 @@
 </head>
 <body>
 	<div class="container mt-5 mb-5">
+		<div class="bg-success w-75 mb-2">
+			<h5 class="text-center">
+				<?php if(isset($success)) echo $success ?>
+			</h5>
+		</div>
 		<table border="1" class="shadow w-75">
 			<thead class="text-center">
 				<tr>
@@ -178,8 +193,7 @@
 		</table>
 
 <?php
-	if(!empty($name) && !empty($password) && !empty($address) && !empty($game) && !empty($gender)
-	&& !empty($age) && !empty($filename)){
+	if(!empty($name) && !empty($password) && !empty($address) && !empty($game) && !empty($gender) && !empty($age) && !empty($filename)){
 ?>
 		<div class="card bg-light mt-3 w-75">
 			<div class="card-body">

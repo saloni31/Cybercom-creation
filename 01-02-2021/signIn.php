@@ -1,7 +1,8 @@
 <?php
+require 'connection.php';
 if(isset($_POST['submit'])){
 	$emailErr = $passwordErr ="";
-	$email = $password = "";
+	$email = $password = $success = "";
 
 	if(empty($_POST['email'])){
 		$emailErr = "Please enter your email.";
@@ -20,6 +21,14 @@ if(isset($_POST['submit'])){
 	}else{
 		$password = $_POST['password'];
 	}
+
+	if(!empty($email) && !empty($password)){
+		if(count(selectByValue("signup","email",$email)) > 0){
+			$success = "You are login successfully.";
+		}else{
+			$success = "Credentials do not match.";
+		}
+	}
 }
 ?>
 
@@ -36,6 +45,9 @@ if(isset($_POST['submit'])){
 </head>
 <body>
 	<div class="container mt-5">
+		<div class="mb-2 bg-success w-50 text-center">
+			<?php if(isset($success)) echo $success ?>
+		</div>
 		<div class="card w-50 circle">
 			<div class="card-header header circle">
 				<h1 class="text-white"><i class="fa fa-lg fa-lock"></i> Sign In </h1>
