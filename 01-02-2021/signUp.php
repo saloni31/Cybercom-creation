@@ -1,17 +1,79 @@
 <?php
 if(isset($_POST['submit'])){
-	if(isset($_POST['firstName']) && isset($_POST['lastName']) && isset($_POST['date'])
-	&& isset($_POST['month']) && isset($_POST['year']) && isset($_POST['gender'])
-	&& isset($_POST['country']) && isset($_POST['email']) && isset($_POST['phone'])
-	&& isset($_POST['password'])){
+	$firstNameErr = $lastNameErr = $birthdateErr = "";
+	$genderErr = $countryErr = $emailErr = "";
+	$phoneErr = $passwordErr = $confirmPasswordErr ="";
+	$firstName = $lastName = $birthdate ="";
+	$gender = $country = $email = $phone = $password = "";
+
+	if(empty($_POST['firstName'])){
+		$firstNameErr = "Please enter your first name.";
+	}elseif(!preg_match("/^[A-Za-z]{3,10}$/", $_POST['firstName'])){
+		$firstNameErr = "First name should be 10 characters long
+		and contain only alphabets.";
+	}else{
 		$firstName = $_POST['firstName'];
+	}
+
+	if(empty($_POST['lastName'])){
+		$lastNameErr = "Please enter your last name.";
+	}elseif(!preg_match("/^[A-Za-z]{3,10}$/", $_POST['lastName'])){
+		$lastNameErr = "First name should be 10 characters long
+		and contain only alphabets.";
+	}else{
 		$lastName = $_POST['lastName'];
+	}
+
+	if((empty($_POST['date']) || $_POST['date'] == '0')
+		&& (empty($_POST['month']) || $_POST['month'] == '0')
+		&& (empty($_POST['year']) || $_POST['year'] == '0')){
+		$birthdateErr = "Please select your birth date,month and year.";
+	}else{
 		$birthdate = $_POST['date']." ".$_POST['month']." ".$_POST['year'];
+	}
+
+	if(empty($_POST['gender'])){
+		$genderErr = "Please select your gender";
+	}else{
 		$gender = $_POST['gender'];
+	}
+
+	if(empty($_POST['country']) || $_POST['country'] == '0'){
+		$countryErr = "Please select your country.";
+	}else{
 		$country = $_POST['country'];
+	}
+
+	if(empty($_POST['email'])){
+		$emailErr = "Please enter your email.";
+	}elseif(!filter_var($_POST['email'],FILTER_VALIDATE_EMAIL)){
+		$emailErr = "Please enter appropriate email.";
+	}else{
 		$email = $_POST['email'];
+	}
+
+	if(empty($_POST['phone'])){
+		$phoneErr = "Please enter your phone number.";
+	}elseif (!preg_match("/^[0-9]{10}$/", $_POST['phone'])) {
+		$phoneErr = "Phone number should be of 10 digits.";
+	}else{
 		$phone = $_POST['phone'];
+	}
+
+	if(empty($_POST['password'])){
+		$passwordErr = "Please enter your Password.";
+	}elseif(!preg_match("/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/"
+		, $_POST['password'])){
+		$passwordErr = "password must be more than 6 characters and contains
+		 special character, digit and capital letter.";
+	}else{
 		$password = $_POST['password'];
+	}
+
+	if(empty($_POST['confirmPassword'])){
+		$confirmPasswordErr = "Confirm password is required.";
+	}elseif($_POST['confirmPassword'] !== $_POST['password']){
+		$confirmPasswordErr = "Confirm password should match with password.";
 	}
 }
 ?>
@@ -41,7 +103,9 @@ if(isset($_POST['submit'])){
 						</div>
 						<div class="col-sm-7">
 							<input type="text" name="firstName" id="firstName" placeholder="Enter First Name"><br>
-							<span id="firstNameError" class="text-danger"></span>
+							<span id="firstNameError" class="text-danger">
+								*<?php if(isset($firstNameErr)) echo $firstNameErr ?>
+							</span>
 						</div>
 					</div>
 
@@ -51,7 +115,9 @@ if(isset($_POST['submit'])){
 						</div>
 						<div class="col-sm-7">
 							<input type="text" name="lastName" id="lastName" placeholder="Enter Last Name"><br>
-							<span id="lastNameError" class="text-danger"></span>
+							<span id="lastNameError" class="text-danger">
+								*<?php if(isset($lastNameErr)) echo $lastNameErr ?>
+							</span>
 						</div>
 					</div>
 
@@ -109,7 +175,9 @@ if(isset($_POST['submit'])){
 								<option value="1999">1999</option>
 								<option value="2000">2000</option>
 							</select><br>
-							<span class="text-danger" id="dateError"></span>
+							<span class="text-danger" id="dateError">
+								*<?php if(isset($birthdateErr)) echo $birthdateErr ?>
+							</span>
 						</div>
 					</div>
 
@@ -122,7 +190,9 @@ if(isset($_POST['submit'])){
 							<label> Male </label>
 							<input type="radio" name="gender" value="Female">
 							<label> Female </label><br>
-							<span class="text-danger" id="genderError"></span>
+							<span class="text-danger" id="genderError">
+								*<?php if(isset($genderErr)) echo $genderErr ?>
+							</span>
 						</div>
 					</div>
 
@@ -132,13 +202,15 @@ if(isset($_POST['submit'])){
 						</div>
 						<div class="col-sm-7">
 							<select name="country" id="country">
-								<option value=" ">Country</option>
+								<option value="0">Country</option>
 								<option value="India">India</option>
 								<option value="Afghanistan">Afghanistan</option>
 								<option value="Australia">Australia</option>
 								<option value="Canada">Canada</option>
 							</select><br>
-							<span class="text-danger" id="countryError"></span>
+							<span class="text-danger" id="countryError">
+								*<?php if(isset($countryErr)) echo $countryErr ?>
+							</span>
 						</div>
 					</div>
 
@@ -148,7 +220,9 @@ if(isset($_POST['submit'])){
 						</div>
 						<div class="col-sm-7">
 							<input type="email" name="email" id="email" placeholder="Enter E-mail"><br>
-							<span class="text-danger" id="emailError"></span>
+							<span class="text-danger" id="emailError">
+								*<?php if(isset($emailErr)) echo $emailErr ?>
+							</span>
 						</div>
 					</div>
 
@@ -158,7 +232,9 @@ if(isset($_POST['submit'])){
 						</div>
 						<div class="col-sm-7">
 							<input type="text" name="phone" id="phone" placeholder="Enter Phone"><br>
-							<span class="text-danger" id="phoneError"></span>
+							<span class="text-danger" id="phoneError">
+								*<?php if(isset($phoneErr)) echo $phoneErr ?>
+							</span>
 						</div>
 					</div>
 
@@ -168,7 +244,9 @@ if(isset($_POST['submit'])){
 						</div>
 						<div class="col-sm-7">
 							<input type="password" id="password" name="password"><br>
-							<span class="text-danger" id="passwordError"></span>
+							<span class="text-danger" id="passwordError">
+								*<?php if(isset($passwordErr)) echo $passwordErr ?>
+							</span>
 						</div>
 					</div>
 
@@ -178,7 +256,9 @@ if(isset($_POST['submit'])){
 						</div>
 						<div class="col-sm-7">
 							<input type="password" id="confirmPassword" name="confirmPassword"><br>
-							<span class="text-danger" id="confirmPasswordError"></span>
+							<span class="text-danger" id="confirmPasswordError">
+								*<?php if(isset($confirmPasswordErr)) echo $confirmPasswordErr ?>
+							</span>
 						</div>
 					</div>
 

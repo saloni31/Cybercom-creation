@@ -1,48 +1,52 @@
+const getElement = (id)=>{
+	return document.getElementById(id);
+}
+
 const validate_form = () =>{
 	let isValidate = true;
 	let genderFlag = false;
 	let gameFlag = false;
-	let name = document.getElementById("name").value;
-	let password = document.getElementById("password").value;
-	let address = document.getElementById("address").value;
-	let gender = document.getElementsByName("gender");
-	let game = document.getElementsByName("game[]");
-	let age = document.getElementById("age").value;
-	let file = document.getElementById("file").value;
+	let name = getElement("name").value;
+	let password = getElement("password").value;
+	let address = getElement("address").value;
+	let gender = getElement("gender");
+	let game = getElement("game[]");
+	let age = getElement("age").value;
+	let file = getElement("file").value;
 
 	if(name === ""){
-		document.getElementById("nameError").innerHTML = 
+		getElement("nameError").innerHTML = 
 		"Please enter your name.";
 		isValidate= false;
 	}else if(! name.match(/^[A-Za-z ]+$/)){
-		document.getElementById("nameError").innerHTML = 
+		getElement("nameError").innerHTML = 
 		"First name contains only alphabets.";
 		isValidate = false;
 	}else if(name.length > 30){
-		document.getElementById("nameError").innerHTML =
+		getElement("nameError").innerHTML =
 		"First name must be less than 10 characters long.";
 		isValidate = false;
 	}else{
-		document.getElementById("nameError").innerHTML ="";
+		getElement("nameError").innerHTML ="";
 	}
 
 	if(password === ""){
-		document.getElementById("passwordError").innerHTML = "Please enter your password";
+		getElement("passwordError").innerHTML = "Please enter your password";
 		isValidate = false;
 	}else if(! password.match(/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/)){
-		document.getElementById("passwordError").innerHTML =
+		getElement("passwordError").innerHTML =
 		"password must be more than 6 characters and contains special character, digit and capital letter.";
 		isValidate = false;
 	}else{
-		document.getElementById("passwordError").innerHTML="";
+		getElement("passwordError").innerHTML="";
 	}
 
 	if(address === ""){
-		document.getElementById("addressError").innerHTML=
+		getElement("addressError").innerHTML=
 		"Please enter your address.";
 		isValidate = false;
 	}else{
-		document.getElementById("addressError").innerHTML="";
+		getElement("addressError").innerHTML="";
 	}
 
 	for(var i=0; i<gender.length; i++){
@@ -52,7 +56,7 @@ const validate_form = () =>{
 	}
 
 	if(genderFlag === false){
-		document.getElementById("genderError").innerHTML = 
+		getElement("genderError").innerHTML = 
 		"Please select your gender";
 		isValidate = false;
 	}
@@ -65,25 +69,25 @@ const validate_form = () =>{
 	}
 
 	if(gameFlag === false){
-		document.getElementById("gameError").innerHTML = 
+		getElement("gameError").innerHTML = 
 		"Please select your game";
 		isValidate = false;
 	}
 
 	if(age === "0"){
-		document.getElementById("ageError").innerHTML =
+		getElement("ageError").innerHTML =
 		"Please select your age.";
 		isValidate = false;
 	}else{
-		document.getElementById("ageError").innerHTML="";
+		getElement("ageError").innerHTML="";
 	}
 
 	if(file === ""){
-		document.getElementById("fileError").innerHTML =
+		getElement("fileError").innerHTML =
 		"Please select file";
 		isValidate = false;
 	}else{
-		document.getElementById("fileError").innerHTML="";
+		getElement("fileError").innerHTML="";
 	}
 
 	if(isValidate === false){

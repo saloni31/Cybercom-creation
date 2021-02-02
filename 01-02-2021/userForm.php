@@ -1,13 +1,55 @@
 <?php
 	if(isset($_POST['submit'])){
-		if(isset($_POST['name']) && isset($_POST['password']) && isset($_POST['address'])
-		&& isset($_POST['game']) && isset($_POST['gender']) && isset($_POST['age'])){
+		$nameErr = $passwordErrr = $gameErr = "";
+		$genderErr = $ageErr = $fileErr = $addressErr = "";
+		$name = $password = $address = $game ="";
+		$gender = $age = $filename = "";
+
+		if(empty($_POST['name'])){
+			$nameErr = "Please enter your name.";	
+		}elseif(!preg_match("/^[A-Za-z ]{5,30}$/", $_POST['name'])){
+			$nameErr = "Name shoulb be 30 characters long and contains alphabets.";
+		}else{
 			$name = $_POST['name'];
+		}
+
+		if(empty($_POST['password'])){
+			$passwordErr = "Please enter your Password.";
+		}elseif(!preg_match("/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/"
+			, $_POST['password'])){
+			$passwordErr = "password must be more than 6 characters and contains
+			 special character, digit and capital letter.";
+		}else{
 			$password = $_POST['password'];
+		}
+
+		if(empty($_POST['address'])){
+			$addressErr = "Please enter your address.";
+		}else{
 			$address = $_POST['address'];
+		}
+
+		if(empty($_POST['game'])){
+			$gameErr = "Please select your games.";
+		}else{
 			$game = $_POST['game'];
+		}
+
+		if(empty($_POST['gender'])){
+			$genderErr = "Please select your gender";
+		}else{
 			$gender = $_POST['gender'];
+		}
+
+		if(empty($_POST['age']) || $_POST['age'] == '0'){
+			$ageErr = "Please select your age.";
+		}else{
 			$age = $_POST['age'];
+		}
+
+		if(empty($_FILES['file']['name'])){
+			$fileErr = "Please select your file.";
+		}else{
 			$filename = $_FILES['file']['name'];
 		}
 	}
@@ -39,7 +81,9 @@
 						<td>
 							<input type="text" name="name" class="form-control field-color" 
 							id="name">
-							<span class="text-danger" id="nameError"></span>
+							<span class="text-danger" id="nameError">
+								*<?php if(isset($nameErr)) echo $nameErr ?>
+							</span>
 						</td>
 					</tr>
 
@@ -47,7 +91,9 @@
 						<td>Enter Password</td>
 						<td><input type="password" name="password" id="password" 
 							class="form-control field-color">
-							<span class="text-danger" id="passwordError"></span>
+							<span class="text-danger" id="passwordError">
+								*<?php if(isset($passwordErr)) echo $passwordErr ?>
+							</span>
 						</td>
 						
 					</tr>
@@ -57,7 +103,9 @@
 						<td> 
 							<textarea name="address" id="address" rows="4" cols="50" 
 							class="form-control field-color"></textarea>
-							<span class="text-danger" id="addressError">sdvdnjk</span>
+							<span class="text-danger" id="addressError">
+								*<?php if(isset($addressErr)) echo $addressErr ?>
+							</span>
 						</td>
 					</tr>
 
@@ -69,7 +117,9 @@
 							<input type="checkbox" name="game[]" value="Badminton"> Badminton <br>
 							<input type="checkbox" name="game[]" value="Cricket"> Cricket<br>
 							<input type="checkbox" name="game[]" value="Volleyball"> Volleyball <br>
-							<span class="text-danger" id="gameError"></span>
+							<span class="text-danger" id="gameError">
+								*<?php if(isset($gameErr)) echo $gameErr ?>
+							</span>
 						</td>
 					</tr>
 
@@ -78,7 +128,9 @@
 						<td> 
 							<input type="radio" name="gender" value="Male"> Male
 							<input type="radio" name="gender" value="Female"> Female<br>
-							<span class="text-danger" id="genderError"></span>
+							<span class="text-danger" id="genderError">
+								*<?php if(isset($genderErr)) echo $genderErr ?>
+							</span>
 						</td>
 					</tr>
 
@@ -99,14 +151,18 @@
 								<option value="29">29</option>
 								<option value="30">30</option>
 							</select>
-							<span class="text-danger" id="ageError"></span>
+							<span class="text-danger" id="ageError">
+								*<?php if(isset($ageErr)) echo $ageErr ?>
+							</span>
 						</td>
 					</tr>
 
 					<tr class="text-center">
 						<td colspan="2">
 							<input type="file" id="file" name="file" class="field-color">
-							<br><span class="text-danger" id="fileError"></span>
+							<br><span class="text-danger" id="fileError">
+								*<?php if(isset($fileErr)) echo $fileErr ?>
+							</span>
 						</td>
 					</tr>
 

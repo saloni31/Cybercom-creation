@@ -1,7 +1,25 @@
 <?php
 if(isset($_POST['submit'])){
-	$email = $_POST['email'];
-	$password = $_POST['password'];
+	$emailErr = $passwordErr ="";
+	$email = $password = "";
+
+	if(empty($_POST['email'])){
+		$emailErr = "Please enter your email.";
+	}elseif(!filter_var($_POST['email'],FILTER_VALIDATE_EMAIL)){
+		$emailErr = "Please enter appropriate email.";
+	}else{
+		$email = $_POST['email'];
+	}
+
+	if(empty($_POST['password'])){
+		$passwordErr = "Please enter your Password.";
+	}elseif(!preg_match("/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/"
+		, $_POST['password'])){
+		$passwordErr = "password must be more than 6 characters and contains
+		 special character, digit and capital letter.";
+	}else{
+		$password = $_POST['password'];
+	}
 }
 ?>
 
@@ -31,7 +49,9 @@ if(isset($_POST['submit'])){
 					<div class="mt-1">
 						<input type="email" name="email" id="email" placeholder="mail@address.com" 
 						class="form-control"><br>
-						<span class="text-danger" id="email_error"></span>
+						<span class="text-danger" id="email_error">
+							<?php if(isset($_POST['emailErr'])) echo $emailErr ?>
+						</span>
 					</div>
 
 					<div class="mt-3">
@@ -39,7 +59,9 @@ if(isset($_POST['submit'])){
 					</div>
 					<div class="mt-1">
 						<input type="password" id="password" name="password" class="form-control"><br>
-						<span class="text-danger" id="password_error"></span>
+						<span class="text-danger" id="password_error">
+							<?php if(isset($_POST['passwordErr'])) echo $passwordErr ?>
+						</span>
 					</div>
 
 					<div class="mt-3 text-center">
