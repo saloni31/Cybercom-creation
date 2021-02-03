@@ -67,7 +67,7 @@ select{
 
 .button{
 	width : 25%;
-	height: 75%;
+	/*height: 75%;*/
 	font-size: 20px;
 }
 

@@ -6,6 +6,17 @@ $database = "practice";
 
 $con = @mysqli_connect($server,$user,$password,$database) or die("Could not connect");
 
+function arrayConverter($res)
+{
+	$data = [];
+	$i = 0;
+	while($row = mysqli_fetch_array($res)){
+		$data[$i] = $row;
+		$i++;
+	}
+	return $data;
+}
+
 function insert($table, $keys, $values)
 {
 	$key = implode(",", $keys);
@@ -24,13 +35,17 @@ function insert($table, $keys, $values)
 
 function selectByValue($table,$key,$value){
 	$sql = "select * from ".$table." where ".$key."='".$value."'";
+	echo $sql;
 	$res = mysqli_query($GLOBALS['con'],$sql);
-	$data = [];
-	$i = 0;
-	while($row = mysqli_fetch_assoc($res)){
-		$data[$i] = $row;
-		$i++;
-	}
+	$data = arrayConverter($res);
+	return $data;
+}
+
+function selectAllData($table)
+{
+	$sql = "select * from ".$table;
+	$res = mysqli_query($GLOBALS['con'],$sql);
+	$data = arrayConverter($res);
 	return $data;
 }
 ?>

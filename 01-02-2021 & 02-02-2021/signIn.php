@@ -24,7 +24,7 @@ if(isset($_POST['submit'])){
 
 	if(!empty($email) && !empty($password)){
 		if(count(selectByValue("signup","email",$email)) > 0){
-			$success = "You are login successfully.";
+			header('Location: listContacts.php');
 		}else{
 			$success = "Credentials do not match.";
 		}
