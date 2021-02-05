@@ -17,6 +17,15 @@ function arrayConverter($res)
 	return $data;
 }
 
+// function that combines key and value pain with equals sign
+function combineData($keys,$values){
+	$data = [];
+	for($i=0; $i<count($keys); $i++){
+		$data[$i] = $keys[$i]." = '".$values[$i]."'";
+	}
+	return $data;
+}
+
 function insert($table, $keys, $values)
 {
 	$key = implode(",", $keys);
@@ -47,5 +56,17 @@ function selectAllData($table)
 	$res = mysqli_query($GLOBALS['con'],$sql);
 	$data = arrayConverter($res);
 	return $data;
+}
+
+// function that returns all data from tha table based on multiple and conditions
+function selectByMultipleAndValues($table,$keys,$values){
+	$data = combineData($keys,$values);
+	$sql = "select * from ".$table." where ".implode(' and ', $data);
+	if(@$res = mysqli_query($GLOBALS['con'],$sql)){
+		$data = arrayConverter($res);
+		return $data;
+	}else{
+		echo "Problem.";
+	}
 }
 ?>

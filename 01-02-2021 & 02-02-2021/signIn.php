@@ -1,35 +1,4 @@
 <?php
-require 'connection.php';
-if(isset($_POST['submit'])){
-	$emailErr = $passwordErr ="";
-	$email = $password = $success = "";
-
-	if(empty($_POST['email'])){
-		$emailErr = "Please enter your email.";
-	}elseif(!filter_var($_POST['email'],FILTER_VALIDATE_EMAIL)){
-		$emailErr = "Please enter appropriate email.";
-	}else{
-		$email = $_POST['email'];
-	}
-
-	if(empty($_POST['password'])){
-		$passwordErr = "Please enter your Password.";
-	}elseif(!preg_match("/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/"
-		, $_POST['password'])){
-		$passwordErr = "password must be more than 6 characters and contains
-		 special character, digit and capital letter.";
-	}else{
-		$password = $_POST['password'];
-	}
-
-	if(!empty($email) && !empty($password)){
-		if(count(selectByValue("signup","email",$email)) > 0){
-			header('Location: listContacts.php');
-		}else{
-			$success = "Credentials do not match.";
-		}
-	}
-}
 ?>
 
 <!DOCTYPE html>
@@ -54,7 +23,7 @@ if(isset($_POST['submit'])){
 			</div>
 
 			<div class="card-body">
-				<form action="signIn.php" method="post" class="form" onsubmit="return validate_form()">
+				<form action="server.php" method="post" class="form" onsubmit="return validate_form()">
 					<div class="mt-1">
 						<label for="email">E-mail address</label>
 					</div>

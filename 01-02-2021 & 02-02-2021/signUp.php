@@ -1,93 +1,6 @@
 <?php
 require 'connection.php';
-if(isset($_POST['submit'])){
-	$firstNameErr = $lastNameErr = $birthdateErr = "";
-	$genderErr = $countryErr = $emailErr = "";
-	$phoneErr = $passwordErr = $confirmPasswordErr ="";
-	$firstName = $lastName = $birthdate = $success = "";
-	$gender = $country = $email = $phone = $password = "";
 
-	if(empty($_POST['firstName'])){
-		$firstNameErr = "Please enter your first name.";
-	}elseif(!preg_match("/^[A-Za-z]{3,10}$/", $_POST['firstName'])){
-		$firstNameErr = "First name should be 10 characters long
-		and contain only alphabets.";
-	}else{
-		$firstName = $_POST['firstName'];
-	}
-
-	if(empty($_POST['lastName'])){
-		$lastNameErr = "Please enter your last name.";
-	}elseif(!preg_match("/^[A-Za-z]{3,10}$/", $_POST['lastName'])){
-		$lastNameErr = "First name should be 10 characters long
-		and contain only alphabets.";
-	}else{
-		$lastName = $_POST['lastName'];
-	}
-
-	if((empty($_POST['date']) || $_POST['date'] == '0')
-		&& (empty($_POST['month']) || $_POST['month'] == '0')
-		&& (empty($_POST['year']) || $_POST['year'] == '0')){
-		$birthdateErr = "Please select your birth date,month and year.";
-	}else{
-		$birthdate = $_POST['date']." ".$_POST['month']." ".$_POST['year'];
-	}
-
-	if(empty($_POST['gender'])){
-		$genderErr = "Please select your gender";
-	}else{
-		$gender = $_POST['gender'];
-	}
-
-	if(empty($_POST['country']) || $_POST['country'] == '0'){
-		$countryErr = "Please select your country.";
-	}else{
-		$country = $_POST['country'];
-	}
-
-	if(empty($_POST['email'])){
-		$emailErr = "Please enter your email.";
-	}elseif(!filter_var($_POST['email'],FILTER_VALIDATE_EMAIL)){
-		$emailErr = "Please enter appropriate email.";
-	}else{
-		$email = $_POST['email'];
-	}
-
-	if(empty($_POST['phone'])){
-		$phoneErr = "Please enter your phone number.";
-	}elseif (!preg_match("/^[0-9]{10}$/", $_POST['phone'])) {
-		$phoneErr = "Phone number should be of 10 digits.";
-	}else{
-		$phone = $_POST['phone'];
-	}
-
-	if(empty($_POST['password'])){
-		$passwordErr = "Please enter your Password.";
-	}elseif(!preg_match("/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/"
-		, $_POST['password'])){
-		$passwordErr = "password must be more than 6 characters and contains
-		 special character, digit and capital letter.";
-	}else{
-		$password = $_POST['password'];
-	}
-
-	if(empty($_POST['confirmPassword'])){
-		$confirmPasswordErr = "Confirm password is required.";
-	}elseif($_POST['confirmPassword'] !== $_POST['password']){
-		$confirmPasswordErr = "Confirm password should match with password.";
-	}
-
-	if(!empty($firstName) && !empty($lastName) && !empty($birthdate) && !empty($gender)
-	 && !empty($country) && !empty($email) && !empty($phone) && !empty($password)){
-	 	$keys = ['firstName','lastName','birthDate','gender',
-				'country','email','phone','password'];
-		$values = [$firstName,$lastName,$birthdate,$gender,
-					$country,$email,$phone,$password];
-		if(insert("signup",$keys,$values)){
-			$success = "You are registered successfully.";
-		}
-	}
-}
 ?>
 
 <!DOCTYPE html>
@@ -112,7 +25,7 @@ if(isset($_POST['submit'])){
 				<span class="title font-weight-bold"> Sign up </span>
 			</div>
 
-			<form action="signUp.php" method="post" onsubmit="return validate_form()">
+			<form action="server.php" method="post" onsubmit="return validate_form()">
 				<div class="card-body fields">
 					<div class="row">
 						<div class="col-sm-5">
@@ -293,7 +206,7 @@ if(isset($_POST['submit'])){
 					<div class="row">
 						<div class="col-sm-7"></div>
 						<div class="col-sm-5 pull-right">
-							<input type="submit" name="submit" value="Submit" class="btn btn-lg btn-success">
+							<input type="submit" name="signUp" value="Submit" class="btn btn-lg btn-success">
 							<input type="reset" name="cancel" value="Cancel" class="btn btn-lg btn-danger">
 						</div>
 					</div>

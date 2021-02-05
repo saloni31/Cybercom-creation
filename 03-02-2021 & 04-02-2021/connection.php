@@ -51,18 +51,24 @@ function insert($table, $keys, $values)
 // function that returns data of any particular key based on the condition
 function selectByValue($table,$key,$value){
 	$sql = "select * from ".$table." where ".$key."='".$value."'";
-	$res = mysqli_query($GLOBALS['con'],$sql);
-	$data = arrayConverter($res);
-	return $data;
+	if(@$res = mysqli_query($GLOBALS['con'],$sql)){
+		$data = arrayConverter($res);
+		return $data;
+	}else{
+		echo "Problem.";
+	}
 }
 
 // function that returns all the data of a table
 function selectAllData($table)
 {
 	$sql = "select * from ".$table;
-	$res = mysqli_query($GLOBALS['con'],$sql);
-	$data = arrayConverter($res);
-	return $data;
+	if(@$res = mysqli_query($GLOBALS['con'],$sql)){
+		$data = arrayConverter($res);
+		return $data;
+	}else{
+		echo "Problem.";
+	}	
 }
 
 // function that returns only specific data from table
@@ -70,27 +76,36 @@ function selectDataByKey($table,$selectKey,$key,$value)
 {
 	$selectKey = implode(", ", $selectKey);
 	$sql = "Select ".$selectKey." from ".$table." where ".$key."= '".$value."'";
-	$res = mysqli_query($GLOBALS['con'],$sql);
-	$data = arrayConverter($res);
-	return $data;
+	if(@$res = mysqli_query($GLOBALS['con'],$sql)){
+		$data = arrayConverter($res);
+		return $data;
+	}else{
+		echo "Problem.";
+	}
 }
 
 // function that returns all data from tha table based on multiple and conditions
 function selectByMultipleAndValues($table,$keys,$values){
 	$data = combineData($keys,$values);
 	$sql = "select * from ".$table." where ".implode(' and ', $data);
-	$res = mysqli_query($GLOBALS['con'],$sql);
-	$data = arrayConverter($res);
-	return $data;
+	if(@$res = mysqli_query($GLOBALS['con'],$sql)){
+		$data = arrayConverter($res);
+		return $data;
+	}else{
+		echo "Problem.";
+	}
 }
 
 // function that returns all data from the table based on multiple or conditions
 function selectByMultipleOrValues($table,$keys,$values){
 	$data = combineData($keys,$values);
 	$sql = "select * from ".$table." where ".implode(' or ', $data);
-	$res = mysqli_query($GLOBALS['con'],$sql);
-	$data = arrayConverter($res);
-	return $data;
+	if(@$res = mysqli_query($GLOBALS['con'],$sql)){
+		$data = arrayConverter($res);
+		return $data;
+	}else{
+		echo "Problem.";
+	}
 }
 
 // function that returns specific data from tha table based on multiple and conditions
@@ -98,9 +113,12 @@ function selectByMultipleKeyAndValue($table,$selectKey,$keys,$values){
 	$data = combineData($keys,$values);
 	$selectKey = implode(", ", $selectKey);
 	$sql = "Select ".$selectKey." from ".$table." where ".implode(' and ', $data);
-	$res = mysqli_query($GLOBALS['con'],$sql);
-	$data = arrayConverter($res);
-	return $data;
+	if(@$res = mysqli_query($GLOBALS['con'],$sql)){
+		$data = arrayConverter($res);
+		return $data;
+	}else{
+		echo "Problem.";
+	}
 }
 
 // function that delete data from the table
@@ -119,4 +137,54 @@ function update($table,$keys,$values,$conditionKey,$conditionValue){
 	return $res;
 }
 
+// function that update all the rows
+function updateAll($table,$keys,$values){
+	$data = combineData($keys,$values);
+	$sql = "Update ".$table." set ".implode(", ", $data);
+	$res = mysqli_query($GLOBALS['con'],$sql);
+	return $res;
+}
+
+// function that performs left join on the tables
+function leftJoin($table1,$table2,$resultkeys,$key){
+	$sql = "select ".implode(", ", $resultkeys).
+			" from ".$table1." left join ".$table2." on "
+			.$table1.".".$key." = ".$table2.".".$key;
+	if(@$res = mysqli_query($GLOBALS['con'],$sql)){
+		$data = arrayConverter($res);
+		return $data;
+	}else{
+		echo "Problem.";
+	}
+}
+
+// function that performs left join on the tables
+function rightJoin($table1,$table2,$resultkeys,$key){
+	$sql = "select ".implode(", ", $resultkeys)." from "
+			.$table1." right join ".$table2." on ".
+			$table1.".".$key." = ".$table2.".".$key;
+
+	if(@$res = mysqli_query($GLOBALS['con'],$sql)){
+		$data = arrayConverter($res);
+		return $data;
+	}else{
+		echo "Problem.";
+	}
+}
+
+function joinData($table1,$table2,$resultkeys,$key){
+	$sql = "select ".implode(", ", $resultkeys)." from "
+			.$table1." join ".$table2." on ".
+			$table1.".".$key." = ".$table2.".".$key;
+
+	if(@$res = mysqli_query($GLOBALS['con'],$sql)){
+		$data = arrayConverter($res);
+		return $data;
+	}else{
+		echo "Problem.";
+	}
+}
+// echo "<pre>";
+// print_r(joinData("people","pet",['pet_name','name'],'people_id'));
+// print_r(selectAllData("count_hit"));
 ?>

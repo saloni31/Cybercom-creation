@@ -1,44 +1,5 @@
 <?php
 require "connection.php";
-if(isset($_POST['submit'])){
-	$nameErr = $emailErr = $subjectErr = $messageErr = "";
-	$name = $email = $subject = $message = $success = "";
-
-	if(empty($_POST['name'])){
-		$nameErr = "Please enter your name.";	
-	}elseif(!preg_match("/^[A-Za-z ]{5,30}$/", $_POST['name'])){
-		$nameErr = "Name shoulb be 30 characters long and contains alphabets.";
-	}else{
-		$name = $_POST['name'];
-	}
-
-	if(empty($_POST['email'])){
-		$emailErr = "Please enter your email.";
-	}elseif(!filter_var($_POST['email'],FILTER_VALIDATE_EMAIL)){
-		$emailErr = "Please enter appropriate email.";
-	}else{
-		$email = $_POST['email'];
-	}
-
-	if(empty($_POST['subject'])){
-		$subjectErr = "Please enter some subject.";
-	}else{
-		$subject = $_POST['subject'];
-	}
-
-	if(empty($_POST['message'])){
-		$messageErr = "Please enter some subject.";
-	}else{
-		$message = $_POST['message'];
-	}
-
-	if(!empty($name) && !empty($email) && !empty($subject) && !empty($message)){
-		if(insert("contact_us",['name','email','subject','message'],
-		[$name,$email,$subject,$message])){
-			$success = "We will contact you soon.";
-		}
-	}
-}
 ?>
 
 <!DOCTYPE html>
@@ -62,7 +23,8 @@ if(isset($_POST['submit'])){
 			<div class="card-header header">
 				<h2 class="text-white"> CONTACT US! </h2>
 			</div>
-			<form action="contactUs.php" method="post" class="form" onsubmit="return validate_form()">
+			<form action="server.php" method="post" class="form"
+			 onsubmit="return validate_form()">
 				<div class="card-body main">
 					<div class="mt-3">
 						<input type="text" name="name" id="name" class="form-control field" 
@@ -100,7 +62,7 @@ if(isset($_POST['submit'])){
 				</div>
 
 				<div class="card-footer p-0">
-					<input type="submit" name="submit" value="SEND MESSAGE" class="form-control footer font-weight-bold">
+					<input type="submit" name="contactUs" value="SEND MESSAGE" class="form-control footer font-weight-bold">
 				</div>
 			</form>
 		</div>
