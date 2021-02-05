@@ -70,7 +70,7 @@ class Connection{
 	}
 
 	// function that update data from the database
-	function update($table,$keys,$values,$conditionKey,$conditionValue){
+	public function update($table,$keys,$values,$conditionKey,$conditionValue){
 		$data = $this->combineData($keys,$values);
 		$sql = "Update ".$table." set ".implode(", ", $data)
 				." Where ".$conditionKey ." = ".$conditionValue;
@@ -79,14 +79,14 @@ class Connection{
 	}
 
 	// function that delete data from the table
-	function delete($table,$key,$value){
+	public function delete($table,$key,$value){
 		$sql = "delete from ".$table." where ".$key." = '".$value."'";
 		$res = mysqli_query($this->con,$sql);
 		return $res;
 	}
 
 	// function that returns all the data of a table
-	function selectAllData($table)
+	public function selectAllData($table)
 	{
 		$sql = "select * from ".$table;
 		if($res = @mysqli_query($this->con,$sql)){
@@ -98,7 +98,7 @@ class Connection{
 	}
 
 	// function that returns data of any particular key based on the condition
-	function selectByValue($table,$key,$value){
+	public function selectByValue($table,$key,$value){
 		$sql = "select * from ".$table." where ".$key."='".$value."'";
 		if($res = @mysqli_query($this->con,$sql)){
 			$data = $this->arrayConverter($res);
@@ -109,7 +109,7 @@ class Connection{
 	}
 
 	// function that returns only specific data from table
-	function selectDataByKey($table,$selectKey,$key,$value)
+	public function selectDataByKey($table,$selectKey,$key,$value)
 	{
 		$selectKey = implode(", ", $selectKey);
 		$sql = "Select ".$selectKey." from ".$table." where ".$key."= '".$value."'";
@@ -122,7 +122,7 @@ class Connection{
 	}
 
 	// function that returns all data from tha table based on multiple and conditions
-	function selectByMultipleAndValues($table,$keys,$values){
+	public function selectByMultipleAndValues($table,$keys,$values){
 		$data = $this->combineData($keys,$values);
 		$sql = "select * from ".$table." where ".implode(' and ', $data);
 		if(@$res = mysqli_query($this->con,$sql)){
@@ -134,7 +134,7 @@ class Connection{
 	}
 
 	// function that returns all data from the table based on multiple or conditions
-	function selectByMultipleOrValues($table,$keys,$values){
+	public function selectByMultipleOrValues($table,$keys,$values){
 		$data = $this->combineData($keys,$values);
 		$sql = "select * from ".$table." where ".implode(' or ', $data);
 		if(@$res = mysqli_query($this->con,$sql)){
@@ -146,7 +146,7 @@ class Connection{
 	}
 
 	// function that returns specific data from tha table based on multiple and conditions
-	function selectByMultipleKeyAndValue($table,$selectKey,$keys,$values){
+	public function selectByMultipleKeyAndValue($table,$selectKey,$keys,$values){
 		$data = $this->combineData($keys,$values);
 		$selectKey = implode(", ", $selectKey);
 		$sql = "Select ".$selectKey." from ".$table." where ".implode(' and ', $data);
@@ -159,7 +159,7 @@ class Connection{
 	}
 
 	// function that performs left join on the tables
-	function leftJoin($table1,$table2,$resultkeys,$key){
+	public function leftJoin($table1,$table2,$resultkeys,$key){
 		$sql = "select ".implode(", ", $resultkeys).
 				" from ".$table1." left join ".$table2." on "
 				.$table1.".".$key." = ".$table2.".".$key;
@@ -172,7 +172,7 @@ class Connection{
 	}
 
 	// function that performs left join on the tables
-	function rightJoin($table1,$table2,$resultkeys,$key){
+	public function rightJoin($table1,$table2,$resultkeys,$key){
 		$sql = "select ".implode(", ", $resultkeys)." from "
 				.$table1." right join ".$table2." on ".
 				$table1.".".$key." = ".$table2.".".$key;
@@ -186,7 +186,7 @@ class Connection{
 	}
 
 	// function that perform join operation which gives resultset where condition is satisfied
-	function joinData($table1,$table2,$resultkeys,$key){
+	public function joinData($table1,$table2,$resultkeys,$key){
 		$sql = "select ".implode(", ", $resultkeys)." from "
 				.$table1." join ".$table2." on ".
 				$table1.".".$key." = ".$table2.".".$key;
