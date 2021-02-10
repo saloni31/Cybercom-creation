@@ -13,11 +13,19 @@ if(isset($_POST['create'])){
 		$tmp_name = $_FILES['image']['tmp_name'];
 		$folder = "../images/categories/".$name;
 		array_push($data,$folder);
-		if($con->insert("category",$keys,$data) && move_uploaded_file($tmp_name, $folder)){
-			header("Location: ../categories.php");
+		if(count($con->selectByValue("category",$key[2],$data[2])) == 1){
+			$_SESSION['urlErr'] = "URL already exist.";
+			header("Location: ../createCategory.php");
 		}else{
-			echo "Problem";
+			if($con->insert("category",$keys,$data) && move_uploaded_file($tmp_name, $folder)){
+				header("Location: ../categories.php");
+			}else{
+				echo "Problem";
+			}
 		}
+		
+	}else{
+		header("Location: ../createCategory.php");
 	}
 }
 

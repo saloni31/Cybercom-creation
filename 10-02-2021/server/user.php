@@ -28,10 +28,10 @@ if(isset($_POST['update'])){
 			header("Location:../register.php");
 		}else{
 			if($con->update("user",$keys,$data,"id",$_SESSION['userId'])){
-			$_SESSION['updateSuccess'] = "Profile updated successfully.";
-		}else{
-			$_SESSION['updateSuccess'] = "Some data are wrong.";	
-		}
+				$_SESSION['updateSuccess'] = "Profile updated successfully.";
+			}else{
+				$_SESSION['updateSuccess'] = "Some data are wrong.";	
+			}
 		}
 		
 		header("Location: ../profile.php");
