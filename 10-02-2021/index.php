@@ -10,7 +10,7 @@ include_once "configuration/core.inc.php";
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	<script type="text/javascript" src="vendor/jquery/jquery.min.js"></script>
 	<script type="text/javascript" src="vendor/bootstrap/js/bootstrap.min.js"></script>
-	<!-- <script type="text/javascript" src="js/validation.js"></script> -->
+	<script type="text/javascript" src="js/validation.js"></script>
 </head>
 <body>
 	<div class="container mt-5">
