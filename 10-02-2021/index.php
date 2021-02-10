@@ -9,6 +9,7 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	<script type="text/javascript" src="vendor/jquery/jquery.min.js"></script>
 	<script type="text/javascript" src="vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/validation.js"></script>
 </head>
 <body>
 	<div class="container mt-5">
@@ -16,16 +17,18 @@
 			<div class="card-body">
 				<h1 class="text-center"> Login </h1>
 				<hr>
-				<form class="form" method="post">
+				<form class="form" method="post" onsubmit="return validateLoginData()">
 					<div class="row mt-3">
 						<div class="col-sm-12">
-							<input type="email" class="form-control" name="email" id="email" placeholder="Email" required>
+							<input type="email" class="form-control" name="email" id="email" placeholder="Email">
+							<span class="text-danger" id="emailErr"></span>
 						</div>
 					</div>
 
 					<div class="row mt-3">
 						<div class="col-sm-12">
-							<input type="password" class="form-control" name="password" id="password" placeholder="Password" required>
+							<input type="password" class="form-control" name="password" id="password" placeholder="Password">
+							<span class="text-danger" id="passwordErr"></span>
 						</div>
 					</div>
 
