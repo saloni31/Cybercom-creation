@@ -23,7 +23,14 @@ if(isset($_GET['categoryId'])){
 						</div>
 						<div class="col-sm-9">
 							<input type="text" name="title" id="title" class="form-control" value="<?php echo $data[0]['title'] ?>">
-							<span id="titleErr" class="text-danger"></span>
+							<span id="titleErr" class="text-danger">
+								<?php
+								if(isset($_SESSION['titleErr'])){
+									echo $_SESSION['titleErr'];
+									unset($_SESSION['titleErr']);
+								}
+								?>
+							</span>
 						</div>
 					</div>
 					<div class="row mt-3">
@@ -36,7 +43,14 @@ if(isset($_GET['categoryId'])){
 							<textarea name="content" id="content" class="form-control">
 								<?php echo $data[0]['content']?>
 							</textarea>
-							<span id="contentErr" class="text-danger"></span>
+							<span id="contentErr" class="text-danger">
+								<?php
+								if(isset($_SESSION['contentErr'])){
+									echo $_SESSION['contentErr'];
+									unset($_SESSION['contentErr']);
+								}
+								?>
+							</span>
 						</div>
 					</div>
 
@@ -48,7 +62,14 @@ if(isset($_GET['categoryId'])){
 						</div>
 						<div class="col-sm-9">
 							<input type="text" name="url" id="url" class="form-control" value="<?php echo $data[0]['url'] ?>">
-							<span id="urlErr" class="text-danger"></span>
+							<span id="urlErr" class="text-danger">
+								<?php
+								if(isset($_SESSION['urlErr'])){
+									echo $_SESSION['urlErr'];
+									unset($_SESSION['urlErr']);
+								}
+								?>
+							</span>
 						</div>
 					</div>
 
@@ -60,7 +81,14 @@ if(isset($_GET['categoryId'])){
 						</div>
 						<div class="col-sm-9">
 							<input type="text" name="metaTitle" id="metaTitle" class="form-control" value="<?php echo $data[0]['metaTitle'] ?>">
-							<span id="metaTitleErr" class="text-danger"></span>
+							<span id="metaTitleErr" class="text-danger">
+								<?php
+								if(isset($_SESSION['metaTitleErr'])){
+									echo $_SESSION['metaTitleErr'];
+									unset($_SESSION['metaTitleErr']);
+								}
+								?>
+							</span>
 						</div>
 					</div>
 
@@ -96,7 +124,14 @@ if(isset($_GET['categoryId'])){
 						</div>
 						<div class="col-sm-9">
 							<input type="file" name="image" id="image" class="form-control">
-							<span id="imageErr" class="text-danger"></span>
+							<span id="imageErr" class="text-danger">
+								<?php
+								if(isset($_SESSION['imageErr'])){
+									echo $_SESSION['imageErr'];
+									unset($_SESSION['imageErr']);
+								}
+								?>
+							</span>
 						</div>
 					</div>
 

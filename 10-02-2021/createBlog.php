@@ -19,7 +19,14 @@ $data = $con->selectAllData("category");
 						</div>
 						<div class="col-sm-9">
 							<input type="text" name="title" id="title" class="form-control">
-							<span id="titleErr" class="text-danger"></span>
+							<span id="titleErr" class="text-danger">
+								<?php
+								if(isset($_SESSION['titleErr'])){
+									echo $_SESSION['titleErr'];
+									unset($_SESSION['titleErr']);
+								}
+								?>
+							</span>
 						</div>
 					</div>
 					<div class="row mt-3">
@@ -30,7 +37,14 @@ $data = $con->selectAllData("category");
 						</div>
 						<div class="col-sm-9">
 							<textarea name="content" id="content" class="form-control"></textarea>
-							<span id="contentErr" class="text-danger"></span>
+							<span id="contentErr" class="text-danger">
+								<?php
+								if(isset($_SESSION['contentErr'])){
+									echo $_SESSION['contentErr'];
+									unset($_SESSION['contentErr']);
+								}
+								?>
+							</span>
 						</div>
 					</div>
 
@@ -42,7 +56,14 @@ $data = $con->selectAllData("category");
 						</div>
 						<div class="col-sm-9">
 							<input type="text" name="url" id="url" class="form-control">
-							<span id="urlErr" class="text-danger"></span>
+							<span id="urlErr" class="text-danger">
+								<?php
+								if(isset($_SESSION['urlErr'])){
+									echo $_SESSION['urlErr'];
+									unset($_SESSION['urlErr']);
+								}
+								?>
+							</span>
 						</div>
 					</div>
 
@@ -54,7 +75,14 @@ $data = $con->selectAllData("category");
 						</div>
 						<div class="col-sm-9">
 							<input type="date" name="publishDate" id="publishDate" class="form-control">
-							<span id="publishDateErr" class="text-danger"></span>
+							<span id="publishDateErr" class="text-danger">
+								<?php
+								if(isset($_SESSION['publishDateErr'])){
+									echo $_SESSION['publishDateErr'];
+									unset($_SESSION['publishDateErr']);
+								}
+								?>
+							</span>
 						</div>
 					</div>
 
@@ -84,7 +112,14 @@ $data = $con->selectAllData("category");
 						</div>
 						<div class="col-sm-9">
 							<input type="file" name="image" id="image" class="form-control">
-							<span id="imageErr" class="text-danger"></span>
+							<span id="imageErr" class="text-danger">
+								<?php
+								if(isset($_SESSION['imageErr'])){
+									echo $_SESSION['imageErr'];
+									unset($_SESSION['imageErr']);
+								}
+								?>
+							</span>
 						</div>
 					</div>
 

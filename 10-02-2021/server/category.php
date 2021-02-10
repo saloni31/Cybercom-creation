@@ -13,20 +13,22 @@ if(isset($_POST['create'])){
 		$tmp_name = $_FILES['image']['tmp_name'];
 		$folder = "../images/categories/".$name;
 		array_push($data,$folder);
-		if(count($con->selectByValue("category",$key[2],$data[2])) == 1){
-			$_SESSION['urlErr'] = "URL already exist.";
-			header("Location: ../createCategory.php");
-		}else{
-			if($con->insert("category",$keys,$data) && move_uploaded_file($tmp_name, $folder)){
-				header("Location: ../categories.php");
+		echo $keys[2]."=".$data[2];
+			if(count($con->selectByValue("category",$keys[2],$data[2])) > 1){
+				$_SESSION['urlErr'] = "URL already exist.";
+				header("Location: ../createCategory.php");
 			}else{
-				echo "Problem";
+				if($con->insert("category",$keys,$data) && move_uploaded_file($tmp_name, $folder)){
+					header("Location: ../categories.php");
+				}else{
+					echo "Problem";
+				}
 			}
+			
+		}else{
+			header("Location: ../createCategory.php");
 		}
 		
-	}else{
-		header("Location: ../createCategory.php");
-	}
 }
 
 if(isset($_POST['update'])){
@@ -43,6 +45,8 @@ if(isset($_POST['update'])){
 		if($con->update("category",$keys,$data,"categoryId",$id) && move_uploaded_file($tmp_name, $folder)){
 			header("Location: ../categories.php");
 		}
+	}else{
+		header("Location: ../updateCategory.php");
 	}
 }
 

@@ -14,6 +14,8 @@ if(isset($_POST['create'])){
 		if($con->insert("blog_post",$key,$data) && move_uploaded_file($tmp_name, $folder)){
 			header("Location: ../home.php");
 		}
+	}else{
+		header("Location: ../createBlog.php");
 	}
 }
 
@@ -30,6 +32,8 @@ if(isset($_POST['update'])){
 		if($con->update("blog_post",$key,$data,"blogId",$id) && move_uploaded_file($tmp_name, $folder)){
 			header("Location: ../home.php");
 		}
+	}else{
+		header("Location: ../updateBlog.php");
 	}
 }
 
