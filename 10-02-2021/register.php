@@ -136,7 +136,7 @@ include_once "configuration/core.inc.php";
 							</label>
 						</div>
 						<div class="col-sm-9">
-							<input type="password" class="form-control" name="password" id="confirmPassword" placeholder="Confirm Password">
+							<input type="password" class="form-control" name="confirmPassword" id="confirmPassword" placeholder="Confirm Password">
 							<span class="text-danger" id="confirmPasswordErr">
 								<?php
 									if(isset($_SESSION['confirmPasswordErr'])){
@@ -156,17 +156,22 @@ include_once "configuration/core.inc.php";
 						<div class="col-sm-9">
 							<textarea class="form-control" name="information" id="information"></textarea>
 							<span class="text-danger" id="informationErr"></span>
+							<?php
+									if(isset($_SESSION['informationErr'])){
+									echo $_SESSION['informationErr'];
+									unset($_SESSION['informationErr']);
+								}
+								?>
 						</div>
 					</div>
 
 					<div class="row mt-3">
 						<div class="col-sm-3"></div>
 						<div class="col-sm-9">
-							<input type="checkbox" id="conditions" class="form-check-input" name="conditions">
+							<input type="checkbox" id="conditions" class="form-check-input" name="conditions" required>
 							<label for="conditions" class="form-check-label"> 
 								Hereby, I accept Terms & conditions 
 							</label><br>
-							<span class="text-danger" id="conditionsErr"></span>
 						</div>
 					</div>
 

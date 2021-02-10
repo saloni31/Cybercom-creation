@@ -3,7 +3,7 @@ session_start();
 include(realpath(dirname(__DIR__)."/lib/Connection.php"));
 use contactApp\Connection;
 
-$con = new contactApp\Connection('contact');
+$con = new contactApp\Connection('blog');
 function getPostData($array){
 	$data = [];
 	global $con;

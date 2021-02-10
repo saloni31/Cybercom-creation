@@ -15,6 +15,16 @@ include_once "configuration/core.inc.php";
 <body>
 	<div class="container mt-5">
 		<div class="card border-0 bg-light shadow w-50">
+			<div class="text-center bg-danger">
+			<span class="text-dark font-weight-bold">
+				<?php
+				if(isset($_SESSION['loginErr'])){
+					echo $_SESSION['loginErr'];
+					unset($_SESSION['loginErr']);
+				}
+				?>
+			</span>
+		</div>
 			<div class="card-body">
 				<h1 class="text-center"> Login </h1>
 				<hr>
