@@ -11,24 +11,20 @@ include_once 'configuration/core.inc.php';
 
 	</div>
 
-	<?php
+	<!-- <?php
 	if(!empty($_SESSION['message'])){
-	?>
+	?> -->
 	<div class="mb-2 mt-2 bg-success text-center p-1">
 		<span id="message" class="text-white font-weight-bold">
-			<?php
-			 echo $_SESSION['message'];
-			 $_SESSION['message'] = "";
-			 ?>
+			
 		</span>
 	</div>
-	<?php
+	<!-- <?php
 		}
-	?>
+	?> -->
 
 	<div class="mt-5"> 
-		<form class="form" action="service/createContact.php" method="post"
-		onsubmit="return validateForm()">
+		<form class="form" method="post" onsubmit="return validateForm(event,'create')">
 			<div class="row">
 				<div class="col-sm-6">
 					<label for="name" class="form-label">Name</label>

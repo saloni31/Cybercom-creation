@@ -12,7 +12,7 @@ include "service/listContacts.php";
 
 	<div class="mt-5"> 
 		<form class="form" method="post" action="service/updateContact.php"
-		onsubmit="return validateForm()">
+		onsubmit="return validateForm('update')">
 			<input type='hidden' name='id' value='<?php if(isset($id)) echo $id ?>'>
 			<div class="row">
 				<div class="col-sm-6">

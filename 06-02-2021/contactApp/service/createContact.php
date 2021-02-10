@@ -2,16 +2,22 @@
 require '../configuration/core.inc.php';
 require 'errors.php';
 
-if(isset($_POST['create'])){
-	if(validateData()){
+if(isset($_POST['name']) && isset($_POST['email']) &&
+isset($_POST['phone']) && isset($_POST['title'])){
+	$name = $_POST['name'];
+	$email = $_POST['email'];
+	$phone = $_POST['phone'];
+	$title = $_POST['title'];
+	if(validateData($name,$email,$phone,$title)){
+
 		$key=['name','email','phone','title'];
-		$data = getPostData($key);
+		$data = [$name,$email,$phone,$title];
 		if($con->insert('contact_details',$key,$data)){
-			$_SESSION['message'] = "Contact created successfully.";
-			header('Location: ../create.php');
+			echo "Contact created successfully.";
+			// header("Location: ../create.php");
 		}
 	}else{
-		header('Location: ../create.php');
-	}
-	
+		echo "Wrong data.";
+
+	}	
 }

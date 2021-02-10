@@ -1,5 +1,8 @@
 <?php
 include_once "configuration/core.inc.php";
+if(empty($_SESSION['name'])){
+	header('Location: index.php');
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -24,6 +27,10 @@ include_once "configuration/core.inc.php";
 
 				<a class="text-white ml-5" href="contacts.php">
 					<i class="fa fa-address-book mr-1"></i>Contacts
+				</a>
+
+				<a class="text-white ml-5" href="service/logout.php">
+					<i class="fa fa-sign-out mr-1"></i>Logout
 				</a>
 			</div>
 		</div>

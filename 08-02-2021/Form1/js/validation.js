@@ -2,15 +2,15 @@ const getElement = (id)=>{
 	return document.getElementById(id);
 }
 
-const validate_form = () =>{
+const validateForm = () =>{
 	let isValidate = true;
 	let genderFlag = false;
 	let gameFlag = false;
 	let name = getElement("name").value;
 	let password = getElement("password").value;
 	let address = getElement("address").value;
-	let gender = getElement("gender");
-	let game = getElement("game[]");
+	let gender = document.getElementsByName("gender");
+	let game = document.getElementsByName("game[]");
 	let age = getElement("age").value;
 	let file = getElement("file").value;
 

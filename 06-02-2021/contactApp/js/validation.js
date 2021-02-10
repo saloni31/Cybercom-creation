@@ -4,7 +4,8 @@ const getElement = (id) => {
 	return document.getElementById(id);
 }
 
-const validateForm = () => {
+const validateForm = (event,id) => {
+	event.preventDefault();
 	let isValidate = true;
 	let name = getElement('name').value;
 	let email = getElement('email').value;
@@ -44,6 +45,31 @@ const validateForm = () => {
 	if(isValidate === false){
 		return false;
 	}else{
-		return true;
+		let data = {'name' : name, 'email' : email, 'phone' : phone, 'title': title};
+		if(id === 'create'){
+			alert("Hii");
+			$.ajax({
+				url : "service/createContact.php",
+				type: "post",
+				data : data,
+				success: (response) => {
+					alert(response);
+					// let data = JSON.Parse(response);
+					console.log(response);
+					// if(response === "Done"){
+					$("#message").text(response['name']);
+					// }	
+				}
+			});
+		}else{
+			$.ajax({
+				url : "service/updateContact.php",
+				type: "post",
+				data : JSON.stringify(data),
+				success: (response) =>{
+					console.log(response);
+				}
+			});
+		}
 	}
 }

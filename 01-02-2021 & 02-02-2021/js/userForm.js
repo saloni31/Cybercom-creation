@@ -9,8 +9,8 @@ const validate_form = () =>{
 	let name = getElement("name").value;
 	let password = getElement("password").value;
 	let address = getElement("address").value;
-	let gender = getElement("gender");
-	let game = getElement("game[]");
+	let game = document.getElementsByName("game[]");
+	let gender = document.getElementsByName("gender");
 	let age = getElement("age").value;
 	let file = getElement("file").value;
 

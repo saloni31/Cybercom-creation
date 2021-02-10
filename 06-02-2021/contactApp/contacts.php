@@ -51,7 +51,7 @@ include "service/listContacts.php";
 				</thead>
 				<tbody>
 					<?php
-						$i=1;
+						$i=$page_first_result+1;
 						foreach ($data as $row) {
 					?>
 					<tr>
@@ -80,17 +80,11 @@ include "service/listContacts.php";
 					<!-- <tr>
 						<td colspan="7"> -->
 							<?php
-								if($page >= 2){
-									echo "<a href='index1.php?page=".($page-1)."'>  Prev </a>";   
-								}
 
 								for($page = 1;$page <= $number_of_pages;$page++){
 									echo '<a href = "contacts.php?page=' . $page . '">' . $page . ' </a>';
 								}
 								
-								if($page < $number_of_pages){
-									echo "<a href='index1.php?page=".($page+1)."'>  Next </a>";  
-								}
 							?>
 						<!-- </td>
 					</tr> -->
