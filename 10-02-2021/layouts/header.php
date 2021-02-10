@@ -26,7 +26,7 @@ if(empty($_SESSION['userId'])){
 				<a class="btn btn-primary font-weight-bold" href="profile.php"> 
 					My Profile 
 				</a>
-				<a class="btn btn-primary font-weight-bold text-white">
+				<a class="btn btn-primary font-weight-bold text-white" href="server/logout.php">
 					 Logout 
 				</a>
 			</div>
