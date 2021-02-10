@@ -198,14 +198,6 @@ const validateCategory = () => {
 		getElement("metaTitleErr").innerHTML = "";
 	}
 
-	if(category === " "){
-		getElement("categoryErr").innerHTML = 
-		"Please select category";
-		isValidate = false;
-	}else{
-		getElement("categoryErr").innerHTML ="";
-	}
-
 	if(image === ""){
 		getElement("imageErr").innerHTML =
 		"Please upload category image.";

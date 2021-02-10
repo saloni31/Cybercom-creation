@@ -1,5 +1,8 @@
 <?php
 include_once "layouts/header.php";
+if(isset($_GET['blogId'])){
+	$data = $con->selectByValue("blog_post","blogId",$_GET['blogId']);
+}
 ?>
 
 <div class="container mt-5">
@@ -9,7 +12,8 @@ include_once "layouts/header.php";
 					<h1> Update Blog Post </h1>
 				</div>
 				<hr>
-				<form class="form" enctype="multipart/form-data" onsubmit="return validateBlog()">
+				<form class="form" enctype="multipart/form-data" onsubmit="return validateBlog()" method="post" action="server/blog.php">
+					<input type="hidden" name="id" value="<?php echo $data[0]['blogId']?>">
 					<div class="row mt-3">
 						<div class="col-sm-3">
 							<label for="title" class="form-label">
@@ -17,7 +21,7 @@ include_once "layouts/header.php";
 							</label>
 						</div>
 						<div class="col-sm-9">
-							<input type="text" name="title" id="title" class="form-control">
+							<input type="text" name="title" id="title" class="form-control" value="<?php echo $data[0]['title'] ?>">
 							<span id="titleErr" class="text-danger"></span>
 						</div>
 					</div>
@@ -28,7 +32,9 @@ include_once "layouts/header.php";
 							</label>
 						</div>
 						<div class="col-sm-9">
-							<textarea name="content" id="content" class="form-control"></textarea>
+							<textarea name="content" id="content" class="form-control">
+								<?php echo $data[0]['content'] ?>
+							</textarea>
 							<span id="contentErr" class="text-danger"></span>
 						</div>
 					</div>
@@ -40,7 +46,7 @@ include_once "layouts/header.php";
 							</label>
 						</div>
 						<div class="col-sm-9">
-							<input type="text" name="url" id="url" class="form-control">
+							<input type="text" name="url" id="url" class="form-control" value="<?php echo $data[0]['url'] ?>">
 							<span id="urlErr" class="text-danger"></span>
 						</div>
 					</div>
@@ -52,7 +58,7 @@ include_once "layouts/header.php";
 							</label>
 						</div>
 						<div class="col-sm-9">
-							<input type="date" name="publishDate" id="publishDate" class="form-control">
+							<input type="date" name="publishDate" id="publishDate" class="form-control" value="<?php echo date('d-m-Y',$data[0]['publishDate']) ?>">
 							<span id="publishDateErr" class="text-danger"></span>
 						</div>
 					</div>
@@ -65,7 +71,17 @@ include_once "layouts/header.php";
 						</div>
 						<div class="col-sm-9">
 							<select name="category" id="category" class="form-control" multiple size="3">
-								<option value="Education">Education</option>
+								<?php
+								$categoryData = $con->selectAllData("category");
+								foreach ($categoryData as $category) {
+									if($category['categoryId'] === $data[0]['category']){
+										echo "<option value='".$category['categoryId']."' selected>".$category['title']."</option>";
+									}else{
+										echo "<option value='".$category['categoryId']."'>".$category['title']."</option>";
+									}
+									
+								}
+								?>
 							</select>
 							<span id="categoryErr" class="text-danger"></span>
 						</div>
@@ -84,7 +100,7 @@ include_once "layouts/header.php";
 					</div>
 
 					<div class="row mt-3">
-						<input type="submit" name="create" value="Submit" class="form-control btn btn-primary">
+						<input type="submit" name="update" value="Submit" class="form-control btn btn-primary">
 					</div>
 				</form>
 			</div>

@@ -1,5 +1,6 @@
 <?php
 include_once "layouts/header.php";
+$data = $con->selectAllData("category");
 ?>
 
 <div class="container mt-5">
@@ -9,7 +10,7 @@ include_once "layouts/header.php";
 					<h1> Add New Blog Post </h1>
 				</div>
 				<hr>
-				<form class="form" enctype="multipart/form-data" onsubmit="return validateBlog()">
+				<form class="form" enctype="multipart/form-data" onsubmit="return validateBlog()" method="post" action="server/blog.php">
 					<div class="row mt-3">
 						<div class="col-sm-3">
 							<label for="title" class="form-label">
@@ -65,7 +66,11 @@ include_once "layouts/header.php";
 						</div>
 						<div class="col-sm-9">
 							<select name="category" id="category" class="form-control" multiple size="3">
-								<option value="Education">Education</option>
+								<?php
+								foreach ($data as $category) {
+									echo "<option value='".$category['categoryId']."'>".$category['title']."</option>";
+								}
+								?>
 							</select>
 							<span id="categoryErr" class="text-danger"></span>
 						</div>

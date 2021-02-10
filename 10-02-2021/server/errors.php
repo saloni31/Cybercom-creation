@@ -94,3 +94,95 @@ function validateLogin(){
 		return true;
 	}
 }
+
+function validateBlog()
+{
+	$isValidate = true;
+	if(empty($_POST['title'])){
+		$_SESSION['titleErr'] = "Please enter title.";
+		$isValidate = false;
+	}elseif(strlen($_POST['title'])>50){
+		$_SESSION['titleErr'] = "Title should contains only 50 characters";
+		$isValidate = false;
+	}
+
+	if(empty($_POST['content'])){
+		$_SESSION['contentErr']="Please enter contents";
+		$isValidate = false;
+	}elseif(strlen($_POST['content'])>255){
+		$_SESSION['contentErr'] ="contents should only be 255 characters long.";
+		$isValidate = false;
+	}
+
+	if(empty($_POST['url'])){
+		$_SESSION['urlErr'] = "Please enter URL.";
+		$isValidate = false;
+	}elseif(strlen($_POST['url']) > 255) {
+		$_SESSION['urlErr'] = "Url should only be 255 characters long.";
+		$isValidate = false;
+	}
+
+	if(empty($_POST['publishDate'])){
+		$_SESSION['publishDateErr']=
+		"Please select published date for post.";
+		$isValidate = false;
+	}
+
+	if(empty($_FILES['image'])){
+		$_SESSION['imageErr'] = "Please select image.";
+		$isValidate = false;
+	}
+
+	if($isValidate == false){
+		return false;
+	}else{
+		return true;
+	}
+}
+
+function validateCategory()
+{
+	$isValidate = true;
+	if(empty($_POST['title'])){
+		$_SESSION['titleErr'] = "Please enter title.";
+		$isValidate = false;
+	}elseif(strlen($_POST['title'])>50){
+		$_SESSION['titleErr'] = "Title should contains only 50 characters";
+		$isValidate = false;
+	}
+
+	if(empty($_POST['content'])){
+		$_SESSION['contentErr']="Please enter contents";
+		$isValidate = false;
+	}elseif(strlen($_POST['content'])>255){
+		$_SESSION['contentErr'] ="contents should only be 255 characters long.";
+		$isValidate = false;
+	}
+
+	if(empty($_POST['url'])){
+		$_SESSION['urlErr'] = "Please enter URL.";
+		$isValidate = false;
+	}elseif(strlen($_POST['url']) > 255) {
+		$_SESSION['urlErr'] = "Url should only be 255 characters long.";
+		$isValidate = false;
+	}
+
+	if(empty($_POST['metaTitle'])){
+		$_SESSION['metaTitleErr'] = "Please enter meta title.";
+		$isValidate = false;
+	}elseif(strlen($_POST['metaTitle'])>50){
+		$_SESSION['metaTitleErr']= "Meta title should only be 50 characters long.";
+		$isValidate = false;
+	}
+
+	if(empty($_FILES['image'])){
+		$_SESSION['imageErr'] = "Please select image.";
+		$isValidate = false;
+	}
+
+	if($isValidate == false){
+		return false;
+	}else{
+		return true;
+	}
+}

@@ -65,6 +65,7 @@ class Connection{
 		$key = implode(",", $keys);
 		$value = $this->addQuotesToElement($values);
 		$sql = "insert into ".$table ."(".$key.") values (". implode(",", $value).")";
+		echo $sql;
 		$res=mysqli_query($this->con,$sql);
 	    $id=mysqli_insert_id($this->con);
 	    return $id;
@@ -75,6 +76,7 @@ class Connection{
 		$data = $this->combineData($keys,$values);
 		$sql = "Update ".$table." set ".implode(", ", $data)
 				." Where ".$conditionKey ." = ".$conditionValue;
+		echo $sql;
 		$res = mysqli_query($this->con,$sql);
 		return $res;
 	}

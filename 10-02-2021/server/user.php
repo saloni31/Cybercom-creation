@@ -19,3 +19,14 @@ if(isset($_POST['register'])){
 		header("Location:../register.php");
 	}
 }
+
+if(isset($_POST['update'])){
+		$keys = ['prefix','firstName','lastName','email','mobile','information'];
+		$data = getPostData($keys);
+		if($con->update("user",$keys,$data,"id",$_SESSION['userId'])){
+			$_SESSION['updateSuccess'] = "Profile updated successfully.";
+		}else{
+			$_SESSION['updateSuccess'] = "Some data are wrong.";	
+		}
+		header("Location: ../profile.php");
+}

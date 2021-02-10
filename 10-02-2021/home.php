@@ -1,5 +1,8 @@
 <?php
 include 'layouts/header.php';
+$conn = mysqli_connect("localhost","root","","blog");
+$sql = "select * from blog_post join category on blog_post.category = category.categoryId where blog_post.userId=".$_SESSION['userId'];
+$res = mysqli_query($conn,$sql);
 ?>
 
 <div class="container mt-5 pt-5">
@@ -48,28 +51,26 @@ include 'layouts/header.php';
 				<tbody>
 					<?php
 						// $i=$page_first_result+1;
-						// foreach ($data as $row) {
+						while($row=mysqli_fetch_array($res)) {
 					?>
-					<!-- <tr>
-						<td> <?php echo $i ?> </td>
-						<td> <?php echo $row['name'] ?> </td>
-						<td> <?php echo $row['email'] ?> </td>
-						<td> <?php echo $row['phone'] ?> </td>
-						<td> <?php echo $row['title'] ?> </td>
-						<td> <?php echo $row['created_on'] ?> </td>
+					<tr>
+						<td> <?php echo $row['blogId'] ?> </td>
+						<td> <?php echo $row[12] ?> </td>
+						<td> <?php echo $row[3] ?> </td>
+						<td> <?php echo $row['publishDate'] ?> </td>
 						<td class="text-white">
 							<a class="btn btn-primary" 
-							href="update.php?userId=<?php echo $row['id'] ?>">
+							href="updateBlog.php?blogId=<?php echo $row['blogId'] ?>">
 								<i class="fa fa-edit"></i>
 							</a>
-							<a class="btn btn-danger" onclick="deleteContact(<?php echo $row['id'] ?>)">
+							<a class="btn btn-danger" onclick="deleteBlog(<?php echo $row['blogId'] ?>)">
 								<i class="fa fa-trash"></i>
 							</a>
 						</td>
-					</tr> -->
+					</tr>
 					<?php
 						// $i++;
-						// }
+						}
 					?>
 				</tbody>
 				<tfoot>

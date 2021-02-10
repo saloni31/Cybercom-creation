@@ -1,5 +1,6 @@
 <?php
 include 'layouts/header.php';
+$data = $con->selectAllData("category");
 ?>
 
 <div class="container mt-5 pt-5">
@@ -9,20 +10,6 @@ include 'layouts/header.php';
 		</h3>
 	</div>
 
-	<?php
-	if(!empty($_SESSION['message'])){
-	?>
-	<div class="mb-2 mt-2 bg-success text-center p-1">
-		<span class="text-white font-weight-bold">
-			<?php
-			 echo $_SESSION['message'];
-			 $_SESSION['message'] = "";
-			 ?>
-		</span>
-	</div>
-	<?php
-		}
-	?>
 	<div class="mb-2 mt-2 text-center p-1 bg-success d-none" id="msgDiv">
 		<span id="message" class="text-white font-weight-bold">
 		</span>
@@ -47,29 +34,25 @@ include 'layouts/header.php';
 				</thead>
 				<tbody>
 					<?php
-						// $i=$page_first_result+1;
-						// foreach ($data as $row) {
+						foreach ($data as $row) {
 					?>
-					<!-- <tr>
-						<td> <?php echo $i ?> </td>
-						<td> <?php echo $row['name'] ?> </td>
-						<td> <?php echo $row['email'] ?> </td>
-						<td> <?php echo $row['phone'] ?> </td>
+					<tr>
+						<td> <?php echo $row['categoryId'] ?> </td>
+						<td> <img src="<?php echo substr($row['image'],3) ?>" height="100" width="100"> </td>
 						<td> <?php echo $row['title'] ?> </td>
-						<td> <?php echo $row['created_on'] ?> </td>
+						<td> <?php echo $row['created_at'] ?> </td>
 						<td class="text-white">
 							<a class="btn btn-primary" 
-							href="update.php?userId=<?php echo $row['id'] ?>">
+							href="updateCategory.php?categoryId=<?php echo $row['categoryId'] ?>">
 								<i class="fa fa-edit"></i>
 							</a>
-							<a class="btn btn-danger" onclick="deleteContact(<?php echo $row['id'] ?>)">
+							<a class="btn btn-danger" onclick="deleteCategory(<?php echo $row['categoryId'] ?>)">
 								<i class="fa fa-trash"></i>
 							</a>
 						</td>
-					</tr> -->
+					</tr>
 					<?php
-						// $i++;
-						// }
+						}
 					?>
 				</tbody>
 				<tfoot>
